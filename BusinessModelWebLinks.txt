@@ -1,0 +1,4 @@
+http://www.win.tue.nl/bpi/2015/challenge
+http://data.3tu.nl/repository/uuid:a0addfda-2044-4541-a450-fdcc9fe16d17
+https://ai.wu.ac.at/emisa2015/contest.php
+http://www.bpmds.org/
