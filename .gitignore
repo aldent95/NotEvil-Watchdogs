@@ -55,3 +55,5 @@ docs/_build/
 
 # PyBuilder
 target/
+parser_testing/data/output.xml
+parser_testing/output.xml
