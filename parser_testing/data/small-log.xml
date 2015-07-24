@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- This file has been generated with the OpenXES library. It conforms -->
+<!-- to the XML serialization of the XES standard for log storage and -->
+<!-- management. -->
+<!-- XES standard version: 1.0 -->
+<!-- OpenXES library version: 1.0RC7 -->
+<!-- OpenXES is available from http://www.openxes.org/ -->
+<log xes.version="1.0" xes.features="nested-attributes" openxes.version="1.0RC7" xmlns="http://www.xes-standard.org/">
+	<extension name="Organizational" prefix="org" uri="http://www.xes-standard.org/org.xesext"/>
+	<extension name="MetaData_Organization" prefix="meta_org" uri="http://www.xes-standard.org/meta_org.xesext"/>
+	<extension name="MetaData_Time" prefix="meta_time" uri="http://www.xes-standard.org/meta_time.xesext"/>
+	<extension name="Time" prefix="time" uri="http://www.xes-standard.org/time.xesext"/>
+	<extension name="Lifecycle" prefix="lifecycle" uri="http://www.xes-standard.org/lifecycle.xesext"/>
+	<extension name="Semantic" prefix="semantic" uri="http://www.xes-standard.org/semantic.xesext"/>
+	<extension name="MetaData_LifeCycle" prefix="meta_life" uri="http://www.xes-standard.org/meta_life.xesext"/>
+	<extension name="Concept" prefix="concept" uri="http://www.xes-standard.org/concept.xesext"/>
+	<extension name="MetaData_Concept" prefix="meta_concept" uri="http://www.xes-standard.org/meta_concept.xesext"/>
+	<extension name="MetaData_General" prefix="meta_general" uri="http://www.xes-standard.org/meta_general.xesext"/>
+	<global scope="trace">
+		<date key="startDate" value="1970-01-01T00:00:00+01:00"/>
+		<string key="caseStatus" value="UNKNOWN"/>
+		<string key="requestComplete" value="UNKNOWN"/>
+		<string key="concept:name" value="UNKNOWN"/>
+		<string key="last_phase" value="UNKNOWN"/>
+		<string key="case_type" value="UNKNOWN"/>
+	</global>
+	<global scope="event">
+		<string key="dateFinished" value="UNKNOWN"/>
+		<string key="org:resource" value="UNKNOWN"/>
+		<date key="time:timestamp" value="1970-01-01T00:00:00+01:00"/>
+		<string key="lifecycle:transition" value="UNKNOWN"/>
+		<string key="question" value="UNKNOWN"/>
+		<string key="concept:name" value="UNKNOWN"/>
+		<string key="monitoringResource" value="UNKNOWN"/>
+		<string key="activityNameNL" value="UNKNOWN"/>
+		<string key="activityNameEN" value="UNKNOWN"/>
+	</global>
+	<classifier name="Activity classifier" keys="concept:name lifecycle:transition"/>
+	<classifier name="Activity classifier activityNameNL" keys="activityNameNL lifecycle:transition"/>
+	<classifier name="Activity classifier activityNameEN" keys="activityNameEN lifecycle:transition"/>
+	<classifier name="Resource" keys="org:resource"/>
+</log>
