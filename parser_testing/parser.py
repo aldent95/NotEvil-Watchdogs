@@ -39,6 +39,16 @@ ET.register_namespace("","http://www.xes-standard.org/")
 tree = ET.parse(args.filename)
 print ('Done')
 root = tree.getroot()
+for elem in tree.iter():
+    for subelem in elem:
+        if 'key' in subelem.attrib:
+            if 'activityNameNL' in subelem.attrib['key']:
+                print("Found")
+                elem.remove(subelem)
+        elif 'keys' in subelem.attrib:
+            if 'activityNameNL' in subelem.attrib['keys']:
+                print("Found")
+                elem.remove(subelem)
 xmlDict = etree_to_dict(root)
 with open("output.txt",'w') as outfile:
     json.dump(xmlDict, outfile, indent=1)
