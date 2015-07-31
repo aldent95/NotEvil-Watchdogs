@@ -19,5 +19,5 @@ from rabo_data import views
 
 urlpatterns = [
     url(r'^Interaction_Activity/$', views.Interaction_ActivityList.as_view()),
-    url(r'^Interaction_Activity/(?P<pk>[0-9]+)/$', views.Interaction_ActivityDetail.as_view()),
+    url(r'^Interaction_Activity/(?P<pk>\w+)/$', views.Interaction_ActivityDetail.as_view()),
 ]
