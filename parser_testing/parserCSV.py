@@ -3,6 +3,11 @@ import os
 import sys
 import json
 import csv
+import requests
+from requests.exceptions import ConnectionError
+from datetime import datetime
+
+fmt = '%d-%m-%Y %H:%M:%S'
 
 def is_valid_file(parser, arg):
     if not os.path.exists(arg):
@@ -23,15 +28,27 @@ with open(args.filename,'r') as infile:
         if i == 0:
             row = line.split(';')
             for field in row:
-                fieldnames.append(field.strip("(aff)"))
+                fieldnames.append(field.strip("(aff)").replace(' ', '_').strip('\n'))
             i = i+1
         else:
             rows.append(line)
 fieldnames = tuple(fieldnames)
 csvfile = csv.DictReader(rows, fieldnames, delimiter=';')
-jsonfile = open('output.json','w')
 print ('Done')
+
+url = 'http://150.242.41.175:5050/rabo/Interaction_Activity/'
+headers = {'Content-Type': 'application/json'}
 for row in csvfile:
-    json.dump(row, jsonfile)
-    jsonfile.write('\n')
+    date = datetime.strptime(row['DateStamp'], fmt)
+    row['DateStamp'] = str(date)
+    try:
+        response = requests.post(url, headers=headers, data=json.dumps(row))
+        if response.status_code != 201:
+            print response.json()
+    except ConnectionError as e:
+        print e
+
+
+
+
 
