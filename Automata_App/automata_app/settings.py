@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'trace_parsing'
+    'rabo_data'
 )
 
 MIDDLEWARE_CLASSES = (
