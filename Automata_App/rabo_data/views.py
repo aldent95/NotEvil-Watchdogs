@@ -11,3 +11,9 @@ class Interaction_ActivityList(generics.ListCreateAPIView):
 class Interaction_ActivityDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Interaction_Activity.objects.all()
     serializer_class = Interaction_ActivitySerializer
+
+
+def total(request):
+	queryset = Interaction_Activity.objects.all()
+	data = {"total actitivities": len(queryset)}
+    return HttpResponse()
