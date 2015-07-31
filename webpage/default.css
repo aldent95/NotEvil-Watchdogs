@@ -1,0 +1,43 @@
+body{
+	background-color: #CCC;
+}
+
+.chart{
+	background-color: #fff;
+	border: 1px solid #999;
+	height: 80%;
+	width: calc(75% - 15px);
+}
+
+.logOut{
+
+	background-color: #000;
+	border: 1px solid #999;
+	color: #fff;
+	height: 80%;
+	width: calc(25% - 15px);
+	float: right;
+}
+
+
+svg {
+  background-color: #FFF;
+  color: #000;
+}
+
+.node {
+    fill: #ccc;
+    stroke: #fff;
+    stroke-width: 2px;
+}
+
+.node_selected {
+    fill: #c00;
+    stroke: #fff;
+    stroke-width: 2px;
+}
+
+.link {
+    stroke: #777;
+    stroke-width: 2px;
+}
