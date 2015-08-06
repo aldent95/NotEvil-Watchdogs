@@ -1,8 +1,9 @@
 var vis = d3.select("#graph")
 	.append("svg");
 
-var w = 900, 
-	h = 400,
+var wind = window;
+var w = (screen.width * 0.75) - 15, 
+	h = (screen.height * 0.8) - 15,
 	r = 15,
 	l = 80;
 
