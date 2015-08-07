@@ -21,14 +21,12 @@ body{
 
 
 svg {
-  background-color: #FFF;
+  background-color: #fff;
   color: #000;
 }
 
 .node {
     fill: #ccc;
-    stroke: #fff;
-    stroke-width: 2px;
 }
 
 .node_selected {
@@ -40,4 +38,14 @@ svg {
 .link {
     stroke: #777;
     stroke-width: 2px;
+}
+
+.circle {
+    fill: #ccc;
+    stroke: #fff;
+    stroke-width: 2px;
+}
+
+.node text {
+	fill: #C00;
 }

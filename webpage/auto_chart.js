@@ -10,16 +10,16 @@ var w = (screen.width * 0.75) - 15,
 vis.attr("width", w)
 	.attr("height", h);
 
-var nodes = [{id: 0, x: 30, y: 30},
-             {id: 1, x: 50, y: 50},
-             {id: 2, x: 70, y: 70},
-             {id: 3, x: 90, y: 90}]
+var nodes = [{id: 0, size: 1, x: 30, y: 30},
+             {id: 1, size: 1, x: 50, y: 50},
+             {id: 2, size: 1, x: 70, y: 70},
+             {id: 3, size: 1, x: 90, y: 90}]
 
 var links = [
-	{source: 0, target: 1},
-	{source: 2, target: 1},
-	{source: 1, target: 3},
-	{source: 2, target: 3}
+	{source: 0, target: 1, weight: 1},
+	{source: 2, target: 1, weight: 1},
+	{source: 1, target: 3, weight: 1},
+	{source: 2, target: 3, weight: 1}
 ]
 
 var svg = d3.select("body").append("svg")
@@ -53,25 +53,47 @@ var link = svg.selectAll(".link")
 	.attr("class", "link")
 	.attr("marker-end", "url(#end)");
 
-
-var node = svg.selectAll(".node")
+var node = svg.selectAll("g")
     .data(nodes)
-    .enter().append("circle")
-    .attr("class", "node")
-    .on("mouseover", function() {
-    	d3.select(this)
-    		.attr("class", "node_selected");
-    })
-    .on("mouseout", function() {
-    	d3.select(this)
-    		.attr("class", "node");
-    })
-    
+    .enter()
+    .append("g");
+node.attr("class", "node")
+    .append("circle")
+    	.attr("class", "circle")
+    	.attr("fill", "#ccc")
+    	.attr("r", r)
+  		.on("mouseover", function() {
+    		d3.select(this)
+    			.attr("class", "node_selected");
+    	})
+    	.on("mouseout", function() {
+    		d3.select(this)
+    			.attr("class", "circle");
+    	})
+  		.call(force.drag)
+
+node.append("text")
+  		.attr("x", 20)
+  		.attr("dy", ".35em")
+  		.text(function(d){return "Generic Text";});
+
+
+
+// var node = svg.selectAll(".node")
+//     .data(nodes)
+//     .enter().append("circle")
+//     .attr("class", "node")
+//     .on("mouseover", function() {
+//     	d3.select(this)
+//     		.attr("class", "node_selected");
+//     })
+//     .on("mouseout", function() {
+//     	d3.select(this)
+//     		.attr("class", "node");
+//     });
 
 force.on("tick", function() {
-	node.attr("r", r)
-        .attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
+	node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
     link.attr("x1", function(d) { return d.source.x; })
         .attr("y1", function(d) { return d.source.y; })
@@ -81,7 +103,6 @@ force.on("tick", function() {
 
 function redraw(){
 	link = svg.selectAll(".link").data(links);
-
 	link.enter().insert("line", ".node")
 		.attr("class", "link")
 		.attr("marker-end", "url(#end)")
@@ -89,36 +110,80 @@ function redraw(){
 	link.exit().remove();
 
 	node = node.data(nodes);
-	node.enter().append("circle")
-		.attr("class", "node")
-		.on("mouseover", function() {
+
+	var newNode = node.enter().append("g");
+
+    newNode.attr("class", "node")
+    	.append("circle")
+    	.attr("class", "circle")
+    	.attr("fill", "#ccc")
+    	.attr("r", r)
+  		.on("mouseover", function() {
     		d3.select(this)
     			.attr("class", "node_selected");
     	})
     	.on("mouseout", function() {
     		d3.select(this)
-    			.attr("class", "node");
+    			.attr("class", "circle");
     	})
+  		.call(force.drag)
 
-    node.exit().remove();
+  	newNode.append("text")
+  		.attr("x", 20)
+  		.attr("dy", ".35em")
+  		.text(function(d){return "Generic Text";});
+
+
+	node.exit().remove();
 
     force.start();
 }
 
 var count = 5;
+
+/*
+	Generates a random node attached as the target of an edge to a  random node in the graph
+*/
 function addRandom(){
+	if(count >= 7)return;
 	var xVal = Math.random() * w,
 		yVal = Math.random() * h;
-	nodes.push({id: count, x: xVal, y: yVal});
+	nodes.push({id: count, size: 1, x: xVal, y: yVal});
 	var start = parseInt(Math.random()*(count-1));
 	links.push({source: start, target: count});
-	console.log(count + " start: "+start);
+	//console.log(count + " start: "+start);
 	count++;
 }
+
+function addData(newNodes, newLinks){
+	for(newNode of newNodes){addNode(newNode);}
+	for(newLink of newLinks){addLink(newLink);}
+};
+//
+function addNode(id){
+	for(var node of nodes){
+		if(node.id === id){
+			node.size += 0.25;
+			return;
+		}
+	}
+	nodes.push({id: id, size: 1, x: 50, y: 50});
+}
+
+function addLink(source, target){
+	for(var newLink in links){
+		if(newLink.source == source && newLink.target == target){
+			newLink.weight += 0.25;
+		}
+	}
+	links.push(source, target);
+}
+
+// Actual program runs here
 force.start();
 
 setTimeout(function(){
-	nodes.push({id: 4, x: 500, y:70});
+	nodes.push({id: 4, size: 1, x: 0, y:0});
 	links.push({source: 1, target: 4});
 	redraw();
 	setInterval(function(){
