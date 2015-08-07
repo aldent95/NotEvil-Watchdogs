@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from trace_parsing import views
+from rabo_data import views
 
 urlpatterns = [
-    url(r'^$', views.TraceListView.as_view()),
+	url(r'^Interaction_Activitys/$', views.total, name='total'),
+    url(r'^Interaction_Activity/$', views.Interaction_ActivityList.as_view()),
+    url(r'^Interaction_Activity/(?P<pk>\w+)/$', views.Interaction_ActivityDetail.as_view()),
 ]
