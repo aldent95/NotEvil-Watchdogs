@@ -4,12 +4,12 @@ from rest_framework import generics
 from django.http import HttpResponse
 
 
-class Interaction_ActivityList(generics.ListCreateAPIView):
+class Incident_ActivityList(generics.ListCreateAPIView):
     queryset = Interaction_Activity.objects.all()
     serializer_class = Interaction_ActivitySerializer
 
 
-class Interaction_ActivityDetail(generics.RetrieveUpdateDestroyAPIView):
+class Incident_ActivityDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Interaction_Activity.objects.all()
     serializer_class = Interaction_ActivitySerializer
 

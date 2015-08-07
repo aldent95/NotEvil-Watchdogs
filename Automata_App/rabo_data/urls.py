@@ -18,7 +18,7 @@ from django.contrib import admin
 from rabo_data import views
 
 urlpatterns = [
-	url(r'^Interaction_Activitys/$', views.total, name='total'),
-    url(r'^Interaction_Activity/$', views.Interaction_ActivityList.as_view()),
-    url(r'^Interaction_Activity/(?P<pk>\w+)/$', views.Interaction_ActivityDetail.as_view()),
+	url(r'^Incident_Activitys/$', views.total, name='total'),
+    url(r'^Incident_Activity/$', views.Incident_ActivityList.as_view()),
+    url(r'^Incident_Activity/(?P<pk>\w+)/$', views.Incident_ActivityDetail.as_view()),
 ]
