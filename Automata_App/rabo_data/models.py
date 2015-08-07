@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Interaction_Activity(models.Model):
+class Incident_Activity(models.Model):
 	""""""
 	IncidentActivity_Number = models.CharField(max_length=100, primary_key=True)
 	IncidentActivity_Type = models.CharField(max_length=100)

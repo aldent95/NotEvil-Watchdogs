@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from rabo_data.models import Interaction_Activity
+from rabo_data.models import Incident_Activity
 
 
-class Interaction_ActivitySerializer(serializers.ModelSerializer):
+class Incident_ActivitySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Interaction_Activity
+        model = Incident_Activity
         fields = (
         	"IncidentActivity_Number",
 			"IncidentActivity_Type",
