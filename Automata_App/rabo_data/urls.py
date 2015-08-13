@@ -19,6 +19,7 @@ from rabo_data import views
 
 urlpatterns = [
 	url(r'^incident_activities/$', views.total, name='total'),
-    url(r'^incident_activity/$', views.Incident_ActivityList.as_view()),
-    url(r'^incident_activity/(?P<pk>\w+)/$', views.Incident_ActivityDetail.as_view()),
+    url(r'^incident_activities/trie$', views.trie, name='trie'),
+    url(r'^incident_activity/$', views.Interaction_ActivityList.as_view()),
+    url(r'^incident_activity/(?P<pk>\w+)/$', views.Interaction_ActivityDetail.as_view()),
 ]
