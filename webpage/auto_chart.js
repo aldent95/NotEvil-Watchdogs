@@ -1,7 +1,7 @@
 var w = (window.innerWidth * 0.75) - 15, 
 	h = (window.innerHeight * 0.8),
-	r = 15, //circle default radius
-	l = 80, //edge length
+	r = 10, //circle default radius
+	l = 40; //edge length
 	logW = (screen.width * 0.2) - 15;
 
 var vis = d3.select("#graph")
@@ -10,7 +10,7 @@ var vis = d3.select("#graph")
 vis.attr("width", w)
 	.attr("height", h);
 
-var count = 5, maxNodes = 7;	//for testing
+var count = 4, maxNodes = 7;	//for testing
 var	selectedNode;
 
 var nodes = [{id: 0, size: 1, x: 30, y: 30},
@@ -56,6 +56,7 @@ var force = d3.layout.force()
 	.nodes(nodes)
 	.links(links)
 	.size([w, h])
+	.gravity(0.2)
 	.charge(-500);
 
 force.linkDistance(l);
@@ -77,7 +78,7 @@ node.attr("class", "node")
     	.attr("class", "circle")
     	.attr("fill", "#ccc")
     	.attr("r", r)
-  		.on("mouseover", function(d) {
+  		.on("click", function(d) {
   			d3.select(".node_selected").attr("class", "circle");
     		d3.select(this).attr("class", "node_selected");
     		updateLogOut(d);
@@ -87,7 +88,7 @@ node.attr("class", "node")
 node.append("text")
   		.attr("x", 20)
   		.attr("dy", ".35em")
-  		.text(function(d){return d.id});
+  		.text(function(d){return d.name});
 
 /*
 	Updates the graph every frame while force is  running
@@ -110,6 +111,7 @@ force.on("tick", function() {
 function redraw(){
 	//update edges
 	link = svg.selectAll(".link").data(links);
+	//link = link.data(links);
 	link.enter().insert("line", ".node")
 		.attr("class", "link")
 		.attr("marker-end", "url(#end)")
@@ -126,7 +128,7 @@ function redraw(){
     	.attr("class", "circle")
     	.attr("fill", "#ccc")
     	.attr("r", r)
-  		.on("mouseover", function(d) {
+  		.on("click", function(d) {
   			d3.select(".node_selected").attr("class", "circle");
     		d3.select(this).attr("class", "node_selected");
     		updateLogOut(d);
@@ -136,7 +138,7 @@ function redraw(){
   	newNode.append("text") //updates labels
   		.attr("x", 20)
   		.attr("dy", ".35em")
-  		.text(function(d){return d.id;});
+  		.text(function(d){return d.name;});
 
 
 	node.exit().remove();
@@ -162,29 +164,36 @@ function addRandom(){
 	Adds a node with the given id
 	#accepts an id
 */
-function addNode(id){
-	for(var node of nodes){
-		if(node.id === id){
-			node.size += 0.25;
-			return;
-		}
-	}
-	nodes.push({id: id, size: 1, x: 50, y: 50});
+function addNode(newId, size, name, newX, newY){
+	//inputNodes.push({id: inputCount-1, size: 1, name: aNode.event, x: inputCount, y: inputCount});
+
+	nodes.push({id: newId, size: size, name: name, x: parseInt(Math.random()*(w-100)+50), y: parseInt(Math.random()*(h-100)+50)});
+	redraw();
 }
 
 /*
 	Adds an edge with the given source and target, or increases weight if already exists
 	(weight not fully implemented)
 */
-function addLink(source, target){
-	for(var newLink in links){
-		if(newLink.source == source && newLink.target == target){
-			newLink.weight += 0.25;
-		}
-	}
-	links.push(source, target);
+function addLink(source, target, weight){
+	links.push({source: source, target: target, weight: weight});
+	redraw();
 }
 
+function clearData(){
+	nodes = [];
+	links = [{source: 0, target: 0, weight: 1}];
+	count = 0;
+	redraw();
+}
+
+function setData(newNodes, newLinks, newCount){
+	nodes = newNodes;
+	links = newLinks;
+	count = newCount;
+
+	redraw();
+}
 /*
 	Resizes the forcegraph to be the same size as the svg when the page is resized
 */
@@ -200,7 +209,7 @@ function resize() {
 */
 function updateLogOut(data){
 	d3.select(".logOut").html(
-		"Id: " + data.id + "<br> Size: " + data.size + "<br> X: " + data.x + "<br> Y: " + data.y 
+		"Id: " + data.id + "<br> Size: " + data.size + "<br> Name: "+ data.name + "<br> X: " + data.x + "<br> Y: " + data.y 
 	);
 }
 
@@ -212,18 +221,18 @@ resize();
 /*
 	For Testing purposes
 */
-setTimeout(function(){
-	nodes.push({id: 4, size: 1, x: 0, y:0});
-	links.push({source: 1, target: 4});
-	redraw();
-	var randomInter = setInterval(function(){
-		addRandom();
-		redraw();
-		if(count >= maxNodes){
-			clearInterval(randomInter);
-		}
-	}, 1000);
-}, 5000);
+// setTimeout(function(){
+// 	nodes.push({id: 4, size: 1, x: 0, y:0});
+// 	links.push({source: 1, target: 4});
+// 	redraw();
+// 	var randomInter = setInterval(function(){
+// 		addRandom();
+// 		redraw();
+// 		if(count >= maxNodes){
+// 			clearInterval(randomInter);
+// 		}
+// 	}, 1000);
+// }, 5000);
 
 
 

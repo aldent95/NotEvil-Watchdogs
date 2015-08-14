@@ -30,8 +30,20 @@ svg {
 }
 
 .node_selected {
-    fill: #c00;
+    fill: #ccc;
+    stroke: #722;
+    stroke-width: 2px;
+}
+
+.circle_mouseover{
+	fill: #c00;
     stroke: #fff;
+    stroke-width: 2px;
+}
+
+.node_selected_mouseover{
+	fill: #c00;
+	stroke: #722;
     stroke-width: 2px;
 }
 
