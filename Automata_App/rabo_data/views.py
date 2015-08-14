@@ -79,8 +79,8 @@ def trie2(request):
 
     for i_id, events in by_id.iteritems():
         print i_id
-        if i_id == "IM0000100":
-            break
+        # if i_id == "IM0000100":
+        #     break
 
         trie_step = event_trie
         for event in events:
@@ -103,4 +103,4 @@ def trie2(request):
 
     template = loader.get_template('index.html')
 
-    return HttpResponse(template.render(context))
+    return HttpResponse(json.dumps(event_trie))
