@@ -33,10 +33,10 @@ def trie(request):
 
     for i_id in i_ids:
         print i_id
-        if i_id == "IM0000049":
+        if i_id == "IM0000100":
             break
 
-        events = Incident_Activity.objects.filter(Incident_ID=i_id).order_by('DateStamp')
+        events = Incident_Activity.objects.filter(Incident_ID=i_id).order_by('-DateStamp')
 
         trie_step = event_trie
         for event in events:
@@ -55,7 +55,51 @@ def trie(request):
                 step = trie_step["links"][event.IncidentActivity_Type]["child"]
                 trie_step = step
 
-    context = {"event_trie"; event_trie}
+    context = {"event_trie": event_trie}
+
+    template = loader.get_template('index.html')
+
+    return HttpResponse(template.render(context))
+
+
+def trie2(request):
+
+    event_trie = {"event": "open", "links": {}}
+
+
+    events_all = Incident_Activity.objects.all().order_by('DateStamp')
+    by_id = {}
+
+    for event in events_all:
+        try:
+            by_id[event.Incident_ID].append(event)
+        except KeyError:
+            by_id[event.Incident_ID] = [event]
+
+
+    for i_id, events in by_id.iteritems():
+        print i_id
+        if i_id == "IM0000100":
+            break
+
+        trie_step = event_trie
+        for event in events:
+            try:
+                step = trie_step["links"][event.IncidentActivity_Type]
+                step['count'] += 1
+                trie_step = step["child"]
+            except KeyError as e: 
+                trie_step["links"][event.IncidentActivity_Type] = {
+                    "count": 1,
+                    "child": {
+                            "event": event.IncidentActivity_Type,
+                            "links": {}
+                    }
+                }
+                step = trie_step["links"][event.IncidentActivity_Type]["child"]
+                trie_step = step
+
+    context = {"event_trie": event_trie}
 
     template = loader.get_template('index.html')
 

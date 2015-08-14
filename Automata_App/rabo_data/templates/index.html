@@ -1,18 +1,46 @@
 <ul>
 <li>
 	open
-	{% for event in event_trie["links"] %}
+	{% for k, link1 in event_trie.links.items %}
 		<ul>
 		<li>
-			{{ event['child']['name'] }}: {{ event['count'] }}
-				{% for event in event["links"] %}
+			{{ link1.child.event }}: {{ link1.count }}
+				{% for k, link2 in link1.child.links.items %}
 					<ul>
 					<li>
-					{{ event['child']['name'] }}: {{ event['count'] }}
-					{% for event in event["links"] %}
+					{{ link2.child.event }}: {{ link2.count }}
+					{% for k, link3 in link2.child.links.items %}
 						<ul>
 						<li>
-						{{ event['child']['name'] }}: {{ event['count'] }}
+						{{ link3.child.event }}: {{ link3.count }}
+						{% for k, link4 in link3.child.links.items %}
+							<ul>
+							<li>
+							{{ link4.child.event }}: {{ link4.count }}
+							{% for k, link5 in link4.child.links.items %}
+								<ul>
+								<li>
+								{{ link5.child.event }}: {{ link5.count }}
+								{% for k, link6 in link5.child.links.items %}
+									<ul>
+									<li>
+									{{ link6.child.event }}: {{ link6.count }}
+									{% for k, link7 in link6.child.links.items %}
+										<ul>
+										<li>
+										{{ link7.child.event }}: {{ link7.count }}
+										</li>
+										</ul>
+									{% endfor %}
+									</li>
+									</ul>
+								{% endfor %}
+								</li>
+								</ul>
+							{% endfor %}
+							</li>
+							</ul>
+						{% endfor %}
 						</li>
 						</ul>
 					{% endfor %}
