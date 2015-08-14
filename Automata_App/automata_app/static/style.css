@@ -5,3 +5,19 @@ body {
 h1 {
 	background-color: #00ff00;
 }
+
+#filterDiv {
+	background-color: red;
+	height: 10%;
+	width: 80%;
+	margin: 0 auto;
+    text-align: left;
+}
+
+#visLogDiv {
+	background-color: blue;
+	height: 10%;
+	width: 80%;
+	margin: 0 auto;
+    text-align: left;
+}
