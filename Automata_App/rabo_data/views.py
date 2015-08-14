@@ -4,6 +4,7 @@ from rest_framework import generics
 from django.http import HttpResponse
 import json
 from django.template import RequestContext, loader
+from collections import OrderedDict
 
 
 class Incident_ActivityList(generics.ListCreateAPIView):
@@ -64,11 +65,10 @@ def trie(request):
 
 def trie2(request):
 
-    event_trie = {"event": "open", "links": {}}
-
+    event_trie = {"event": "root", "links": {}}
 
     events_all = Incident_Activity.objects.all().order_by('DateStamp')
-    by_id = {}
+    by_id = OrderedDict()
 
     for event in events_all:
         try:
