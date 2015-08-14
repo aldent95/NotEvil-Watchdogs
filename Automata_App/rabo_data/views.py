@@ -3,6 +3,7 @@ from rabo_data.serializers import Incident_ActivitySerializer
 from rest_framework import generics
 from django.http import HttpResponse
 import json
+from django.template import RequestContext, loader
 
 
 class Incident_ActivityList(generics.ListCreateAPIView):
@@ -25,28 +26,37 @@ def trie(request):
 
     event_trie = {"event": "open", "links": {}}
 
-
     i_ids = Incident_Activity.objects.values_list(
-        'Incident_ID', flat=True).order_by('Incident_ID')
+        'Incident_ID', flat=True).distinct().order_by('Incident_ID')
+
+    print len(i_ids)
 
     for i_id in i_ids:
-        events = Incident_Activity.objects.filter(IncidentActivity_Number=i_id).order_by('DateStamp')
+        print i_id
+        if i_id == "IM0000049":
+            break
+
+        events = Incident_Activity.objects.filter(Incident_ID=i_id).order_by('DateStamp')
 
         trie_step = event_trie
         for event in events:
             try:
                 step = trie_step["links"][event.IncidentActivity_Type]
                 step['count'] += 1
-                trie_step = step
-            except KeyError:
+                trie_step = step["child"]
+            except KeyError as e: 
                 trie_step["links"][event.IncidentActivity_Type] = {
                     "count": 1,
                     "child": {
-                            "event": event.IncidentActivity_Type
+                            "event": event.IncidentActivity_Type,
                             "links": {}
                     }
                 }
-                step = trie_step["links"][event.IncidentActivity_Type]
+                step = trie_step["links"][event.IncidentActivity_Type]["child"]
                 trie_step = step
 
-    return HttpResponse(json.dumps(event_trie))
+    context = {"event_trie"; event_trie}
+
+    template = loader.get_template('index.html')
+
+    return HttpResponse(template.render(context))

@@ -1,0 +1,26 @@
+<ul>
+<li>
+	open
+	{% for event in event_trie["links"] %}
+		<ul>
+		<li>
+			{{ event['child']['name'] }}: {{ event['count'] }}
+				{% for event in event["links"] %}
+					<ul>
+					<li>
+					{{ event['child']['name'] }}: {{ event['count'] }}
+					{% for event in event["links"] %}
+						<ul>
+						<li>
+						{{ event['child']['name'] }}: {{ event['count'] }}
+						</li>
+						</ul>
+					{% endfor %}
+					</li>
+					</ul>
+				{% endfor %}
+		</li>
+		</ul>
+	{% endfor %}
+</li>
+</ul>
