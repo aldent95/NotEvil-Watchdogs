@@ -1,7 +1,7 @@
 var w = (window.innerWidth * 0.75) - 15, 
 	h = (window.innerHeight * 0.8),
-	r = 10, //circle default radius
-	l = 40; //edge length
+	r = 15, //circle default radius
+	l = 80; //edge length
 	logW = (screen.width * 0.2) - 15;
 
 var vis = d3.select("#graph")
@@ -125,19 +125,23 @@ function redraw(){
 
     newNode.attr("class", "node")
     	.append("circle")
-    	.attr("class", "circle")
+    	.attr("class", function(d){if(d.root){return "circle_root";}return "circle"})
     	.attr("fill", "#ccc")
-    	.attr("r", r)
+    	.attr("r", function(d){return r * d.size;})
   		.on("click", function(d) {
-  			d3.select(".node_selected").attr("class", "circle");
-    		d3.select(this).attr("class", "node_selected");
-    		updateLogOut(d);
+  			console.log(d.root);
+  			d3.selectAll(".node_selected").attr("class", "circle");
+  			d3.selectAll(".circle_root_selected").attr("class", "circle_root");
+  			if(d.root){d3.select(this).attr("class", "circle_root_selected");}
+  			else{d3.select(this).attr("class", "node_selected");}
+  			updateLogOut(d);
     	})
   		.call(force.drag)
 
   	newNode.append("text") //updates labels
   		.attr("x", 20)
   		.attr("dy", ".35em")
+  		.attr("background-color", "#fff")
   		.text(function(d){return d.name;});
 
 
@@ -164,10 +168,10 @@ function addRandom(){
 	Adds a node with the given id
 	#accepts an id
 */
-function addNode(newId, size, name, newX, newY){
+function addNode(newId, size, name, newX, newY, root){
 	//inputNodes.push({id: inputCount-1, size: 1, name: aNode.event, x: inputCount, y: inputCount});
 
-	nodes.push({id: newId, size: size, name: name, x: parseInt(Math.random()*(w-100)+50), y: parseInt(Math.random()*(h-100)+50)});
+	nodes.push({id: newId, size: size, name: name, x: parseInt(Math.random()*(w-100)+50), y: parseInt(Math.random()*(h-100)+50), root: root});
 	redraw();
 }
 

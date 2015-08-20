@@ -41,6 +41,18 @@ svg {
     stroke-width: 2px;
 }
 
+.circle_root{
+	fill: #f0f;
+	stroke: #fff;
+    stroke-width: 2px;
+}
+
+.circle_root_selected{
+	fill: #f0f;
+	stroke: #722;
+    stroke-width: 2px;
+}
+
 .node_selected_mouseover{
 	fill: #c00;
 	stroke: #722;
