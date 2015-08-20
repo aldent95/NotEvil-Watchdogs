@@ -10,20 +10,11 @@ var vis = d3.select("#graph")
 vis.attr("width", w)
 	.attr("height", h);
 
-var count = 4, maxNodes = 7;	//for testing
+var maxNodes = 7;	//for testing
 var	selectedNode;
-
-var nodes = [{id: 0, size: 1, x: 30, y: 30},
-             {id: 1, size: 1, x: 50, y: 50},
-             {id: 2, size: 1, x: 70, y: 70},
-             {id: 3, size: 1, x: 90, y: 90}]
-
-var links = [ 
-	{source: 0, target: 1, weight: 1},
-	{source: 2, target: 1, weight: 1},
-	{source: 1, target: 3, weight: 1},
-	{source: 2, target: 3, weight: 1}
-]
+var links = [];
+var nodes = [];
+var count = 0;
 
 //set up base svgs and divs
 var svg = d3.select("body").append("svg")
