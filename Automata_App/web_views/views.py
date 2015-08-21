@@ -8,5 +8,5 @@ def index(request):
 
 def visualisation(request):
 	context = {}
-	template = loader.get_template("visualisation1.html")
+	template = loader.get_template("visualisation.html")
 	return HttpResponse(template.render(context))
