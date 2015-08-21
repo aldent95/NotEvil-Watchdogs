@@ -37,6 +37,7 @@ function getData(handleData) {
   $.ajax({
     url:"http://150.242.41.175:5050/rabo/Interaction_Activitys/trie2"
     success:function(data) {
+    	alert(data);
       parseData(null, JSON.parse(data), true); 
     }
   });
