@@ -7,7 +7,10 @@
 	
 {% endblock %}
 
-<script src="d3.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="auto_chart.js"></script>
-<script src="get_input.js"></script>
+
+{% block scripts %}
+<script src = "{% static 'd3.min.js' %}"></script>
+<script src = "{% static 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js' %}"></script>
+<script src = "{% static 'auto_chart.js' %}"></script>
+<script src = "{% static 'get_input.js' %}"></script>
+{% endblock %}
