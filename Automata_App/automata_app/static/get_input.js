@@ -33,7 +33,7 @@ $.getJSON("trie.json", function(json) {
 */
 
 //gets data from endpoint specified on server. 
-function getData(handleData) {
+function getData() {
   $.ajax({
     url:"http://150.242.41.175:5050/rabo/Interaction_Activitys/trie2"
     success:function(data) {
@@ -42,3 +42,13 @@ function getData(handleData) {
     }
   });
 }
+/*
+function getData()
+$.ajax({
+    type: 'GET',
+    url: "http://localhost/page1.html",
+    success:function(data){
+        alert(data);
+    }
+ });
+ */
