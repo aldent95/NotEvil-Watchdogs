@@ -50,7 +50,7 @@ function calcNodeSize(nodeSize){
 	return 1;
 }
 
-$.getJSON("trie.json", function(json) {
+$.getJSON("/static/trie.json", function(json) {
     parseRoot(json);
     console.log(count + " Nodes");
 });
