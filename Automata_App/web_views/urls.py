@@ -19,4 +19,8 @@ from web_views import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url('^', include('django.contrib.auth.urls'))
+    url(r'^signup/$', views.signup, name='singup'),
+    url(r'^login$/', views.login, name='login'),
+    url(r'^authenticated/$', views.authencated, name='authencated')
 ]
