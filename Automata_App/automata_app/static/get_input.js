@@ -33,22 +33,12 @@ $.getJSON("trie.json", function(json) {
 */
 
 //gets data from endpoint specified on server. 
-function getData() {
-  $.ajax({
-    url:"http://150.242.41.175:5050/rabo/Interaction_Activitys/trie2"
-    success:function(data) {
-    	alert(data);
-      parseData(null, JSON.parse(data), true); 
-    }
-  });
-}
-/*
+
 function getData()
 $.ajax({
     type: 'GET',
-    url: "http://localhost/page1.html",
+    url: "http://150.242.41.175:5050/rabo/Interaction_Activitys/trie2",
     success:function(data){
-        alert(data);
+        alert('all done');
     }
  });
- */
