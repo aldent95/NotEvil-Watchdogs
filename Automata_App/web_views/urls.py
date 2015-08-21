@@ -20,6 +20,7 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+<<<<<<< HEAD
     url(r'^visualisation$', views.visualisation, name='visualisation'),
     url(r'^signup/$', views.signup, name='singup'),
     url(r'^login$/', views.login, name='login')
