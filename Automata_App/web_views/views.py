@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from forms import AppRegistrationForm
+from form import AppRegistrationForm
 
 
 def index(request):
