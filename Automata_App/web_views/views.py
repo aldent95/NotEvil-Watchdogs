@@ -10,8 +10,8 @@ def signup(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('registration/signup_complete.html')
-        args={}
-        args.update(csrf(request))
-        args['form'] = AppRegistrationForm()
-        print args
-        return render(request, 'registration/signup.html', args)
+    args={}
+    args.update(csrf(request))
+    args['form'] = AppRegistrationForm()
+    print args
+    return render(request, 'registration/signup.html', args)
