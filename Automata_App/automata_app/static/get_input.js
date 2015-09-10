@@ -1,7 +1,7 @@
 var data;
 var inputNodes = [];
 var inputLinks = [];
-var minCount = 100;
+var minCount = 20;
 
 function parseData(parentIndex, aNode, nodeSize, root){
 	count ++ ;
