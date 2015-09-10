@@ -20,6 +20,6 @@ def signup(request):
             return HttpResponseRedirect('registration/signup_complete.html')
         args={}
         args.update(csrf(request))
-        args.['form'] = AppRegistrationForm()
+        args['form'] = AppRegistrationForm()
         print args
         return render(request, 'registration/signup.html', args)
