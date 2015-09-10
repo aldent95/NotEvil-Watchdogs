@@ -21,6 +21,6 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^login/', auth_views.login,{'template_name':'registration/login.html'}),
-    url(r'^signup/', views.signup),
+    url(r'^signup/', views.signup)
 #    url(r'^authenticated/$', views.authencated, name='authencated')
 ]
