@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.template import loader
-from forms import AppRegistrationForm
+from form import AppRegistrationForm
 
 def index(request):
 	context = {}
