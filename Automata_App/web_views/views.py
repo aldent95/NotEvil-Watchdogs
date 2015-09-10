@@ -13,7 +13,7 @@ def visualisation(request):
 	return HttpResponse(template.render(context))
 
 def signup(request):
-    if request.method == 'POST':
+    if request.method = 'POST':
         form = AppRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
