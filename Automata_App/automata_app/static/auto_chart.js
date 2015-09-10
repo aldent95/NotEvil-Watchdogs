@@ -141,7 +141,7 @@ function redraw(){
   			d3.selectAll(".circle_end_selected").attr("class", "circle_end");
   			if(d.root){d3.select(this).attr("class", "circle_root_selected");}
   			else if(d.hasChildren){d3.select(this).attr("class", "node_selected");}
-  			else {d3.select(this).attr("class", "node_end_selected");}
+  			else {d3.select(this).attr("class", "circle_end_selected");}
   			updateLogOut(d);
     	})
   		.call(force.drag)
