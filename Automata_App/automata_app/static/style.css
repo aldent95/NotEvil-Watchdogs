@@ -1,0 +1,112 @@
+body {
+	background-color: yellow;
+} 
+
+h1 {
+	background-color: #00ff00;
+}
+
+#filterDiv {
+	background-color: red;
+	height: 10%;
+	width: 100%;
+	margin: 0 auto;
+    text-align: left;
+}
+
+#visLogDiv {
+	background-color: blue;
+	height: 10%;
+	width: 100%;
+	margin: 0 auto;
+    text-align: left;
+}
+
+
+body{
+	background-color: #CCC;
+}
+
+.chart{
+	background-color: #fff;
+	border: 1px solid #999;
+	height: 80%;
+	width: calc(75% - 15px);
+}
+
+.logOut{
+
+	background-color: #fff;
+	border: 1px solid #999;
+	color: #722;
+	width: calc(25% - 15px);
+	height: 80%;
+	float: right;
+}
+
+
+svg {
+  background-color: #fff;
+  color: #000;
+}
+
+.node {
+    fill: #ccc;
+}
+
+.node_selected {
+    fill: #ccc;
+    stroke: #f0f;
+    stroke-width: 2px;
+}
+
+.circle_mouseover{
+	fill: #ff0;
+    stroke: #fff;
+    stroke-width: 2px;
+}
+
+.circle_root{
+	fill: #0f0;
+	stroke: #fff;
+    stroke-width: 2px;
+}
+
+.circle_root_selected{
+	fill: #0f0;
+	stroke: #f0f;
+    stroke-width: 2px;
+}
+
+.circle_end{
+	fill: #f00;
+	stroke: #fff;
+	stroke-width: 2px;
+}
+
+.circle_end_selected{
+	fill: #f00;
+	stroke: #f0f;
+	stroke-width: 2px;
+}
+
+.node_selected_mouseover{
+	fill: #ff0;
+	stroke: #f0f;
+    stroke-width: 2px;
+}
+
+.link {
+    stroke: #777;
+    stroke-width: 2px;
+}
+
+.circle {
+    fill: #ccc;
+    stroke: #fff;
+    stroke-width: 2px;
+}
+
+.node text {
+	fill: #C00;
+}

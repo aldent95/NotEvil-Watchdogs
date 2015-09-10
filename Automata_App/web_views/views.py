@@ -1,5 +1,12 @@
 from django.http import HttpResponse
-
+from django.template import loader
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the web_views index.")
+	context = {}
+	template = loader.get_template("index.html")
+	return HttpResponse(template.render(context))
+
+def visualisation(request):
+	context = {}
+	template = loader.get_template("visualisation.html")
+	return HttpResponse(template.render(context))

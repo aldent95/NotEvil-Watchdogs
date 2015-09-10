@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>SWEN302</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+  </head>
+  <body>
+  	<h1> 
+    {% block title %} Welcome to my the site {% endblock %} </h1>
+  	
+    {% block content %}
+
+  	{% endblock %}
+    {% block scripts %}
+    {% endblock %}
+  </body>
+  <!-- Import javascript files -->
+
+  
+</html>
