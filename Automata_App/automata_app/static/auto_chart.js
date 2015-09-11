@@ -148,12 +148,6 @@ function redraw(){
   			else {d3.select(this).attr("class", "circle_end_selected");}
   			updateLogOut(d);
     	})
-    	.on("mousover", function(d){
-    		help = true;
-    	})
-    	.on("mouseout", function(d){
-    		help = false;
-    	})
   		.call(force.drag)
 
   	newNode.append("text") //updates labels
