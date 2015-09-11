@@ -3,7 +3,7 @@ var buttonHeight = 50;
 var labelsShown = true;
 
 var body = d3.select("body");
-var buttonPanel = body.append("div").attr("height", buttonHeight);
+var buttonPanel = body.append("div").attr("height", "10%");
 var labelButton = body.append("button").attr("height", buttonHeight);
 
 labelButton.on("click", function(d){
