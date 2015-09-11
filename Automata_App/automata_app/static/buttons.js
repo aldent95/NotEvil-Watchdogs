@@ -4,9 +4,10 @@ var buttonWidth = (window.innerWidth * 0.75) - 15
 var labelsShown = true;
 
 var body = d3.select("body");
-var buttonPanel = body.append("div")
+var buttonPanel = body.append("svg")
 	.attr("height", buttonHeight)
-	.attr("width", buttonWidth);
+	.attr("width", buttonWidth)
+	.attr("class", "button_panel");
 
 var labelButton = body.append("button")
 	.attr("height", buttonHeight)

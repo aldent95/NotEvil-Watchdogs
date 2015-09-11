@@ -73,3 +73,8 @@ svg {
 .node text {
 	fill: #C00;
 }
+
+.button_panel {
+	width: calc(75% - 15px);
+	height: calc(15% - 15px);
+}
