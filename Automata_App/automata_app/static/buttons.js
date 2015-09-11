@@ -12,7 +12,6 @@ var buttonPanel = body.append("div")
 var labelButton = buttonPanel.append("button")
 	.attr("style")
 	.html("text")
-	.
 	.attr("height", 200)
 	.attr("width", 400);
 
