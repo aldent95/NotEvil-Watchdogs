@@ -44,4 +44,4 @@ var cubeButton = buttonPanel.append("button")
 		})
 	})
 
-	cubeButton.append("div").html("cubic Sizing");
+	cubeButton.append("div").html("Cubic <br> Sizing");
