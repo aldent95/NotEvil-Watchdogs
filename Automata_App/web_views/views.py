@@ -14,6 +14,8 @@ def signup(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('registration/signup_complete.html')
+        else:
+            return HttpResponse("nope")
     args={}
     args.update(csrf(request))
     args['form'] = AppRegistrationForm()
