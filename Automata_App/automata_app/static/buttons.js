@@ -13,7 +13,7 @@ var labelButton = buttonPanel.append("button")
 		else{body.selectAll(".node text").attr("visibility", "inline");labelsShown = true;}
 	})
 
-	labelButton.append("div").html("Toggle Labels");
+	labelButton.append("div").html("Toggle <br> Labels");
 
 var flatButton = buttonPanel.append("button")
 	.style("height", buttonHeight)
@@ -22,7 +22,7 @@ var flatButton = buttonPanel.append("button")
 		body.selectAll(".circle").attr("r", r);
 	})
 
-	flatButton.append("div").html("Flat Sizing");
+	flatButton.append("div").html("Flat <br> Sizing");
 
 var logButton = buttonPanel.append("button")
 	.style("height", buttonHeight)
@@ -33,14 +33,14 @@ var logButton = buttonPanel.append("button")
 		})
 	})
 
-	logButton.append("div").html("Log Sizing");
+	logButton.append("div").html("Log <br> Sizing");
 
 var cubeButton = buttonPanel.append("button")
 	.style("height", buttonHeight)
 	.style("width", buttonWidth)
 	.on("click", function(d){
 		body.selectAll(".circle").attr("r", function(d){
-			return r * (Math.pow(d.size, 1/3) / Math.pow(minCount, 1/3));
+			return r * (Math.pow(d.size, 1/3) / Math.pow(minCount, 1/3))/5;
 		})
 	})
 
