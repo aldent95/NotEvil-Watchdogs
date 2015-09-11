@@ -254,6 +254,9 @@ function mousedown(){
 	return;
 }
 
+function mouseup(){
+	
+}
 /*
 	Sets the log contents to be the data of the given Node
 */
