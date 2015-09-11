@@ -1,14 +1,13 @@
-var buttonHeight = (window.innerHeight * 0.1);
-var buttonWidth = (window.innerWidth * 0.75) - 15
-
+var buttonHeight = 50;
+var buttonWidth = 100;
 var labelsShown = true;
 
 var body = d3.select("body");
 var buttonPanel = body.append("div");
 
 var labelButton = buttonPanel.append("button")
-	.style("height", 50)
-	.style("width", 100)
+	.style("height", buttonHeight)
+	.style("width", buttonWidth)
 	.attr("value", "Toggle Labels")
 	.on("click", function(d){
 		if(labelsShown){body.selectAll(".node text").attr("visibility", "hidden");labelsShown = false;}
