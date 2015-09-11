@@ -1,10 +1,16 @@
-var buttonHeight = 50;
+var buttonHeight = (window.innerHeight * 0.1);
+var buttonWidth = (window.innerWidth * 0.75) - 15
 
 var labelsShown = true;
 
 var body = d3.select("body");
-var buttonPanel = body.append("div").attr("height", "10%");
-var labelButton = body.append("button").attr("height", buttonHeight);
+var buttonPanel = body.append("div")
+	.attr("height", buttonHeight)
+	.attr("width", buttonWidth);
+
+var labelButton = body.append("button")
+	.attr("height", buttonHeight)
+	.attr("width", buttonWidth);
 
 labelButton.on("click", function(d){
 	if(labelsShown){body.selectAll(".node text").attr("visibility", "hidden");labelsShown = false;}
