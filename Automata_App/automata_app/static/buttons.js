@@ -34,3 +34,14 @@ var logButton = buttonPanel.append("button")
 	})
 
 	logButton.append("div").html("Log Sizing");
+
+var cubeButton = buttonPanel.append("button")
+	.style("height", buttonHeight)
+	.style("width", buttonWidth)
+	.on("click", function(d){
+		body.selectAll(".circle").attr("r", function(d){
+			return r * (Math.pow(nodeSize, 1/3) / Math.pow(minCount, 1/3));
+		})
+	})
+
+	cubeButton.append("div").html("cubic Sizing");
