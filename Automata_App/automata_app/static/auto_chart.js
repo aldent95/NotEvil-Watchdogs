@@ -137,7 +137,7 @@ function redraw(){
     	.attr("class", function(d){if(d.root){return "circle_root";}else if(d.hasChildren){return "circle"}return "circle_end"})
     	.attr("fill", "#ccc")
     	//.attr("r", function(d){return r * d.size;})
-    	.attr("r", r);
+    	.attr("r", r)
   		.on("click", function(d) {
   			console.log(d.root);
   			d3.selectAll(".node_selected").attr("class", "circle");
