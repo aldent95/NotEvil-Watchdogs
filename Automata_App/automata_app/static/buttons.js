@@ -14,3 +14,4 @@ var labelButton = buttonPanel.append("button")
 		if(labelsShown){body.selectAll(".node text").attr("visibility", "hidden");labelsShown = false;}
 		else{body.selectAll(".node text").attr("visibility", "inline");labelsShown = true;}
 	});
+labelButton.append("div").html("Toggle Labels")
