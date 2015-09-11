@@ -1,5 +1,9 @@
 from django.http import HttpResponse
 from django.template import loader
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.core.context_processors import csrf
+from django.contrib import auth
 from form import AppRegistrationForm
 
 def index(request):
