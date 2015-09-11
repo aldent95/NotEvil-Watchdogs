@@ -40,7 +40,7 @@ var cubeButton = buttonPanel.append("button")
 	.style("width", buttonWidth)
 	.on("click", function(d){
 		body.selectAll(".circle").attr("r", function(d){
-			return r * (Math.pow(nodeSize, 1/3) / Math.pow(minCount, 1/3));
+			return r * (Math.pow(d.size, 1/3) / Math.pow(minCount, 1/3));
 		})
 	})
 
