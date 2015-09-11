@@ -3,7 +3,7 @@
 var w = (window.innerWidth * 0.75) - 15, 
 	h = (window.innerHeight * 0.8),
 	r = 15, //circle default radius
-	l = 200; //edge length
+	l = 80; //edge length
 	logW = (screen.width * 0.2) - 15;
 
 var maxNodes = 7;	//for testing

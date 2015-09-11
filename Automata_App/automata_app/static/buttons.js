@@ -37,6 +37,19 @@ var logButton = buttonPanel.append("button")
 
 	logButton.append("div").html("Log <br> Sizing");
 
+
+var squareButton = buttonPanel.append("button")
+	.style("height", buttonHeight)
+	.style("width", buttonWidth)
+	.on("click", function(d){
+		body.selectAll(".circle").attr("r", function(d){
+			return r * (Math.pow(d.size, 1/2) / Math.pow(minCount, 1/2));
+		})
+		force.start();
+	})
+
+	squareButton.append("div").html("Square <br> Sizing");
+
 var cubeButton = buttonPanel.append("button")
 	.style("height", buttonHeight)
 	.style("width", buttonWidth)
