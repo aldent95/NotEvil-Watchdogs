@@ -20,7 +20,6 @@ var flatButton = buttonPanel.append("button")
 	.style("width", buttonWidth)
 	.on("click", function(d){
 		body.selectAll(".circle").attr("r", r);
-		force.linkDistance(l);
 		force.start();
 	})
 
@@ -33,7 +32,6 @@ var logButton = buttonPanel.append("button")
 		body.selectAll(".circle").attr("r", function(d){
 			return r * (Math.log(d.size)/Math.log(minCount));
 		})
-		force.linkDistance(l);
 		force.start();
 	})
 
@@ -46,7 +44,6 @@ var cubeButton = buttonPanel.append("button")
 		body.selectAll(".circle").attr("r", function(d){
 			return r * (Math.pow(d.size, 1/3) / Math.pow(minCount, 1/3));
 		})
-		force.linkDistance(2*l);
 		force.start();
 	})
 

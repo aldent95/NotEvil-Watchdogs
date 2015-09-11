@@ -8,6 +8,7 @@ var w = (window.innerWidth * 0.75) - 15,
 
 var maxNodes = 7;	//for testing
 var	selectedNode;
+var help = false;
 var links = [];
 var nodes = [];
 var count = 0;
@@ -148,6 +149,12 @@ function redraw(){
   			else {d3.select(this).attr("class", "circle_end_selected");}
   			updateLogOut(d);
     	})
+    	.on("mousover", function(d){
+    		help = true;
+    	})
+    	.on("mouseout", function(d){
+    		help = false;
+    	})
   		.call(force.drag)
 
   	newNode.append("text") //updates labels
@@ -241,17 +248,12 @@ function resize() {
   }
 
 function mousedown(){
-	svg.call(d3.behavior.zoom().on("zoom"), rescale);
+	if(!help){
+		svg.call(d3.behavior.zoom().on("zoom"), rescale);
+	}
 	return;
 }
 
-function mouseup(){
-
-}
-
-function mousemove(){
-
-}
 /*
 	Sets the log contents to be the data of the given Node
 */
