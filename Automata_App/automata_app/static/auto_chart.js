@@ -5,6 +5,7 @@ var w = (window.innerWidth * 0.75) - 15,
 	r = 15, //circle default radius
 	l = 80; //edge length
 	logW = (screen.width * 0.2) - 15;
+	console.log(h);
 
 var maxNodes = 7;	//for testing
 var	selectedNode;
@@ -42,8 +43,8 @@ d3.select(window).on("resize", resize);
 
 //var log = d3.select("body").append("div")
 var log = vis.append("div")
-	.attr("width", logW)
-	.attr("height", h)
+	.style("width", logW)
+	.style("height", h)
 	.attr("class", "logOut");
 
 //create the definition for the arrow head to go on the end of edges
