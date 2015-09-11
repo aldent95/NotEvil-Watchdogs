@@ -5,12 +5,12 @@ var labelsShown = true;
 
 var body = d3.select("body");
 var buttonPanel = body.append("div")
-	.attr("height", buttonHeight)
-	.attr("width", buttonWidth)
+	.attr("height", 200)
+	.attr("width", buttonWidth);
 	//.attr("class", "button_panel");
 
 var labelButton = buttonPanel.append("button")
-	.attr("height", buttonHeight)
+	.attr("height", 200)
 	.attr("width", buttonWidth);
 
 labelButton.on("click", function(d){
