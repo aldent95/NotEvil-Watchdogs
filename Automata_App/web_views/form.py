@@ -20,6 +20,8 @@ class AppRegistrationForm(UserCreationForm):
         user.last_name = self.cleaned_data['last_name']
         user.username = self.cleaned_data['username']
         user.company_name = self.cleaned_data['company_name']
+        user.password = self.cleaned_data['password']
+        user.password2 = self.cleaned_data['password2']
 
 
         if commit:
