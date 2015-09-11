@@ -1,3 +1,5 @@
+// this is a comment
+
 var w = (window.innerWidth * 0.75) - 15, 
 	h = (window.innerHeight * 0.8),
 	r = 15, //circle default radius
