@@ -15,6 +15,15 @@ var labelButton = buttonPanel.append("button")
 
 	labelButton.append("div").html("Toggle Labels");
 
+var = buttonPanel.append("button")
+	.style("height", buttonHeight)
+	.style("width", buttonWidth)
+	.on("click", function(d){
+		body.selectAll(".circle").attr("r", r);
+	})
+
+	flatButton.append("div").html("Flat Sizing");
+
 var logButton = buttonPanel.append("button")
 	.style("height", buttonHeight)
 	.style("width", buttonWidth)
