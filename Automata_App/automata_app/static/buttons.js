@@ -9,7 +9,7 @@ var buttonPanel = body.append("div")
 	.attr("width", buttonWidth)
 	.attr("class", "button_panel");
 
-var labelButton = buttonPanel.append("button")
+var labelButton = buttonPanel.append("svg")
 	.attr("style")
 	.html("text")
 	.attr("height", 200)
