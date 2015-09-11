@@ -7,8 +7,9 @@ var body = d3.select("body");
 var buttonPanel = body.append("div");
 
 var labelButton = buttonPanel.append("button")
-	.style("height", 100)
+	.style("height", 50)
 	.style("width", 100)
+	.attr("html", "asdf")
 	.on("click", function(d){
 	if(labelsShown){body.selectAll(".node text").attr("visibility", "hidden");labelsShown = false;}
 	else{body.selectAll(".node text").attr("visibility", "inline");labelsShown = true;}
