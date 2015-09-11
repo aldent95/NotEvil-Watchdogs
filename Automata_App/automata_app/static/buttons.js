@@ -14,7 +14,6 @@ var labelButton = buttonPanel.append("button")
 	.html("text")
 	.attr("height", 200)
 	.attr("width", 400)
-	.attr("min-height", buttonHeight)
 	.on("click", function(d){
 	if(labelsShown){body.selectAll(".node text").attr("visibility", "hidden");labelsShown = false;}
 	else{body.selectAll(".node text").attr("visibility", "inline");labelsShown = true;}
