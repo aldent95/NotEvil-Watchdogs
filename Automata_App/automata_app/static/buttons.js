@@ -7,9 +7,9 @@ var body = d3.select("body");
 var buttonPanel = body.append("svg")
 	.attr("height", buttonHeight)
 	.attr("width", buttonWidth)
-	.attr("class", "button_panel");
+	//.attr("class", "button_panel");
 
-var labelButton = body.append("button")
+var labelButton = buttonPanel.append("button")
 	.attr("height", buttonHeight)
 	.attr("width", buttonWidth);
 
