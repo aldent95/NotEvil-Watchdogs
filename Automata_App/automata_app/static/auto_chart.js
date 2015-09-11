@@ -140,7 +140,6 @@ function redraw(){
     	//.attr("r", function(d){return r * d.size;})
     	.attr("r", r)
   		.on("click", function(d) {
-  			console.log(d.root);
   			d3.selectAll(".node_selected").attr("class", "circle");
   			d3.selectAll(".circle_root_selected").attr("class", "circle_root");
   			d3.selectAll(".circle_end_selected").attr("class", "circle_end");
@@ -248,6 +247,7 @@ function resize() {
   }
 
 function mousedown(){
+	console.log("help: "+help);
 	if(!help){
 		svg.call(d3.behavior.zoom().on("zoom"), rescale);
 	}
@@ -255,7 +255,7 @@ function mousedown(){
 }
 
 function mouseup(){
-	
+
 }
 /*
 	Sets the log contents to be the data of the given Node
