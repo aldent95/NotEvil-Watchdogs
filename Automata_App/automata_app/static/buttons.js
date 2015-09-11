@@ -10,8 +10,10 @@ var buttonPanel = body.append("div")
 	//.attr("class", "button_panel");
 
 var labelButton = buttonPanel.append("button")
+	.attr("style")
+	.html("text")
 	.attr("height", 200)
-	.attr("width", buttonWidth);
+	.attr("width", 400);
 
 labelButton.on("click", function(d){
 	if(labelsShown){body.selectAll(".node text").attr("visibility", "hidden");labelsShown = false;}
