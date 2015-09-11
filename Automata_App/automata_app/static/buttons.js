@@ -20,7 +20,7 @@ var logButton = buttonPanel.append("button")
 	.style("width", buttonWidth)
 	.on("click", function(d){
 		body.selectAll(".circle").attr("r", function(d){
-			return r * (Math.log(d.size)/Math.log(minSize));
+			return r * (Math.log(d.size)/Math.log(minCount));
 		})
 	})
 

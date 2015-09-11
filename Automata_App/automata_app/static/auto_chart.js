@@ -11,7 +11,7 @@ var	selectedNode;
 var links = [];
 var nodes = [];
 var count = 0;
-var minCount = 5;
+var minCount = 50;
 
 var vis = d3.select("body").append("div");
 //var outer = d3.select("body").append("svg")
