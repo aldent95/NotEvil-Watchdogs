@@ -7,11 +7,12 @@ var body = d3.select("body");
 var buttonPanel = body.append("div")
 	.attr("height", 200)
 	.attr("width", buttonWidth);
-	//.attr("class", "button_panel");
+	.attr("class", "button_panel");
 
 var labelButton = buttonPanel.append("button")
 	.attr("style")
 	.html("text")
+	.
 	.attr("height", 200)
 	.attr("width", 400);
 
