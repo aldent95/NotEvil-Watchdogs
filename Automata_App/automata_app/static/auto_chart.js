@@ -3,7 +3,7 @@
 var w = (window.innerWidth * 0.75) - 15, 
 	h = (window.innerHeight * 0.8),
 	r = 15, //circle default radius
-	l = 80; //edge length
+	l = 200; //edge length
 	logW = (screen.width * 0.2) - 15;
 
 var maxNodes = 7;	//for testing
@@ -241,10 +241,7 @@ function resize() {
   }
 
 function mousedown(){
-	console.log("help: "+help);
-	if(!help){
-		svg.call(d3.behavior.zoom().on("zoom"), rescale);
-	}
+	svg.call(d3.behavior.zoom().on("zoom"), rescale);
 	return;
 }
 
