@@ -14,7 +14,7 @@ class AppRegistrationForm(UserCreationForm):
         fields = ('username', 'email', 'password1', 'password2')
 
     def save(self,commit = True):   
-        user = super(MyRegistrationForm, self).save(commit = False)
+        user = super(AppRegistrationForm, self).save(commit = False)
         user.email = self.cleaned_data['email']
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
