@@ -1,14 +1,19 @@
+// this is a comment
+
 var w = (window.innerWidth * 0.75) - 15, 
 	h = (window.innerHeight * 0.8),
 	r = 15, //circle default radius
 	l = 80; //edge length
 	logW = (screen.width * 0.2) - 15;
+	console.log(h);
 
 var maxNodes = 7;	//for testing
 var	selectedNode;
+var help = false;
 var links = [];
 var nodes = [];
 var count = 0;
+var minCount = 50;
 
 var vis = d3.select("body").append("div");
 //var outer = d3.select("body").append("svg")
@@ -38,8 +43,8 @@ d3.select(window).on("resize", resize);
 
 //var log = d3.select("body").append("div")
 var log = vis.append("div")
-	.attr("width", logW)
-	.attr("height", h)
+	.style("width", logW)
+	.style("height", h)
 	.attr("class", "logOut");
 
 //create the definition for the arrow head to go on the end of edges
@@ -133,15 +138,15 @@ function redraw(){
     	.append("circle")
     	.attr("class", function(d){if(d.root){return "circle_root";}else if(d.hasChildren){return "circle"}return "circle_end"})
     	.attr("fill", "#ccc")
-    	.attr("r", function(d){return r * d.size;})
+    	//.attr("r", function(d){return r * d.size;})
+    	.attr("r", r)
   		.on("click", function(d) {
-  			console.log(d.root);
   			d3.selectAll(".node_selected").attr("class", "circle");
   			d3.selectAll(".circle_root_selected").attr("class", "circle_root");
   			d3.selectAll(".circle_end_selected").attr("class", "circle_end");
   			if(d.root){d3.select(this).attr("class", "circle_root_selected");}
   			else if(d.hasChildren){d3.select(this).attr("class", "node_selected");}
-  			else {d3.select(this).attr("class", "node_end_selected");}
+  			else {d3.select(this).attr("class", "circle_end_selected");}
   			updateLogOut(d);
     	})
   		.call(force.drag)
@@ -242,10 +247,6 @@ function mousedown(){
 }
 
 function mouseup(){
-
-}
-
-function mousemove(){
 
 }
 /*

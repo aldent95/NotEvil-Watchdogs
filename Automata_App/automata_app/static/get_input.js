@@ -1,7 +1,6 @@
 var data;
 var inputNodes = [];
 var inputLinks = [];
-var minCount = 100;
 
 function parseData(parentIndex, aNode, nodeSize, root){
 	count ++ ;
@@ -47,7 +46,7 @@ function calcNodeSize(nodeSize){
 	//return Math.log(nodeSize) / Math.log(minCount);			//log
 	//return Math.sqrt(nodeSize) / Math.sqrt(minCount);			//sqrt
 	//return Math.pow(nodeSize, 1/3) / Math.pow(minCount, 1/3)	//cubrt
-	return 1;
+	return nodeSize;
 }
 
 $.getJSON("/static/trie.json", function(json) {
