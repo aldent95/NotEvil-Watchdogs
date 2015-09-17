@@ -1,20 +1,36 @@
-<html>
-  <head>
-    <title>SWEN302</title>
-	{% load staticfiles %}
-	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-  </head>
-  <body>
-  	<h1> 
-    {% block title %} Welcome to my the site {% endblock %} </h1>
-  	
-    {% block content %}
 
-  	{% endblock %}
-    {% block scripts %}
-    {% endblock %}
+<html>
+    <head>
+        <title>SWEN302</title>
+		{% load staticfiles %}
+		<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+		<style>
+			#sign_up {
+				width: 400px;
+				position: absolute;
+				margin: auto auto;
+			}
+			
+			label{
+				position: relative;
+				left: 0px;
+			}
+			
+			input{
+				position: relative;
+				left: 0px;
+			}
+		</style>
+    </head>
+	<body>
+		<h1> 
+		{% block title %} Welcome to my the site {% endblock %} </h1>
+  	
+		{% block content %}
+
+		{% endblock %}
+		{% block scripts %}
+		{% endblock %}
   </body>
   <!-- Import javascript files -->
-
-  
 </html>
