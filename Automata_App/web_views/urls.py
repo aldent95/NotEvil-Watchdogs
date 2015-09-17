@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^visualisation$', views.visualisation, name='visualisation'),
     url(r'^signup/$', views.signup, name='singup'),
-    url(r'^login/$', TemplateView.as_view(template_name='registration/login.html'), name='login')
+    url(r'^login/$', TemplateView.as_view(template_name='registration/login.html'), name='login'),
+    url('^', include('django.contrib.auth.urls'))
 #    url(r'^authenticated/$', views.authencated, name='authencated')
 ]
