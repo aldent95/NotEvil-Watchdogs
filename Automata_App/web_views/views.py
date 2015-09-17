@@ -33,5 +33,5 @@ def signup(request):
 def login(request):
         context={}
         template = loader.get_template('registration/login.html')
-        return HttpResponse(emplate.render(context))
+        return HttpResponse(template.render(context))
         
