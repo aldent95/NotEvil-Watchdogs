@@ -29,3 +29,9 @@ def signup(request):
         print args
         return render(request, 'registration/signup.html', args)
     return render(request, 'registration/signup.html', {'form': form})
+
+def login(request):
+        context={}
+        template = loader.get_template('registration/login.html')
+        return HttpResponse(emplate.render(context))
+        
