@@ -1,5 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.contrib.auth.models import User
 import json
 from collections import OrderedDict, Iterable
 from projects.models import Project, Log, Event
@@ -33,7 +34,14 @@ class ProjectList(APIView):
            
         if serializer.is_valid():
             data = serializer.validated_data
+
+            try:
+                user = User.objects.get(username=data['username'])
+            except User.DoesNotExist:
+                return Response({'errors': ["invalid user."]}, status=400)
+
             project = Project.objects.create(name=data['name'], description=data['description'])
+            project.owners.add(user)
             return Response({'notes': ['project created']}, status=200)
         else:
             return Response({'errors': serializer.errors}, status=400)

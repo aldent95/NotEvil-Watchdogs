@@ -12,6 +12,7 @@ class JSONSerializerField(serializers.Field):
 class ProjectSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=200)
     description = serializers.CharField()
+    username = serializers.CharField(max_length=100)
 
 
 class LogSerializer(serializers.Serializer):

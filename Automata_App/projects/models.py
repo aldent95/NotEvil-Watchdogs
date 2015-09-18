@@ -14,7 +14,7 @@ class Project(models.Model):
     uuid = models.CharField(max_length=100, default=hex_uuid, primary_key=True)
     name = models.CharField(max_length=200)
     description = models.TextField()
-    # owners = models.ManyToManyField(User)
+    owners = models.ManyToManyField(User)
 
     created_on = models.DateTimeField(default=timezone.now)
 
