@@ -20,7 +20,8 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^visualisation$', views.visualisation, name='visualisation'),
+    url(r'^visualisation$', views.test_visualisation, name='visualisation'),
+    url(r'^projects/(?P<p_uuid>\w+)/visualisation$', views.visualisation, name='visualisation'),
     url(r'^signup/$', views.signup, name='singup'),
     url(r'^login$/', views.login, name='login')
 #    url(r'^authenticated/$', views.authencated, name='authencated')
