@@ -11,10 +11,15 @@ def index(request):
 	template = loader.get_template("index.html")
 	return HttpResponse(template.render(context))
 
-def visualisation(request):
-	context = {}
+def visualisation(request, p_uuid):
+	context = {"p_uuid": p_uuid, "test": False}
 	template = loader.get_template("visualisation.html")
 	return HttpResponse(template.render(context))
+
+def test_visualisation(request):
+    context = {"test": True}
+    template = loader.get_template("visualisation.html")
+    return HttpResponse(template.render(context))
 
 def signup(request):
     if request.method == 'POST':

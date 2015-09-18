@@ -15,14 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from web_views import views
-from django.contrib.auth import views as auth_views
+from projects import views
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^visualisation$', views.test_visualisation, name='visualisation'),
-    url(r'^projects/(?P<p_uuid>\w+)/visualisation$', views.visualisation, name='visualisation'),
-    url(r'^signup/$', views.signup, name='singup'),
-    url(r'^login$/', views.login, name='login')
-#    url(r'^authenticated/$', views.authencated, name='authencated')
+    url(r'^projects$', views.ProjectList.as_view()),
+    url(r'^projects/(?P<p_uuid>\w+)$', views.ProjectDetail.as_view()),
+    url(r'^projects/(?P<p_uuid>\w+)/trie$', views.ProjectTrie.as_view()),
+    url(r'^projects/(?P<p_uuid>\w+)/logs$', views.LogList.as_view()),
+    # url(r'^projects/(?P<p_uuid>\w+)/logs/(?P<l_uuid>\w+)$', views.LogDetail),
+    # url(r'^projects/(?P<p_uuid>\w+)/logs/(?P<l_uuid>\w+)/events$', views.EventList),
+    # url(r'^projects/(?P<p_uuid>\w+)/logs/(?P<l_uuid>\w+)/events/(?P<e_uuid>\w+)$', views.EventDetail),
 ]

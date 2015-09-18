@@ -16,10 +16,12 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from rabo_data import urls as rabo_urls
+from projects import urls as project_urls
 from web_views import urls as web_urls
 
 urlpatterns = [
 	url(r'^', include(web_urls)),
     url(r'^rabo/', include(rabo_urls)),
+    url(r'^automata/', include(project_urls)),
     url(r'^admin/', include(admin.site.urls)),
 ]
