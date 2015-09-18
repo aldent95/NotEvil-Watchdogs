@@ -29,7 +29,7 @@ class ProjectList(APIView):
         return Response(json_data)
 
     def post(self, request):
-
+        print str(request.data)
         serializer = ProjectSerializer(data=request.data)
            
         if serializer.is_valid():

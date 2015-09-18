@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %} Projects {% endblock %}
+
+{% block content %}
+	<dialog id="window">
+		<h3>New Project</h3>
+		<p>Name</p>
+		<input type="text" name="projectname" id="projectname">
+		<p>Description</p>
+		<input type="text" name="projectdescription" id="projectdescription">
+		<button id="submit">Submit</button>
+	</dialog>
+	<h2>Projects</h2>
+	{% for project in project_list %}
+	<div>
+		<h3> {{ project.name}}</h3>
+		<p> {{ project.description}}</p>
+		<a href = "/projects/{{project.uuid}}/visualisation"> Project ID {{project.uuid}}</a>
+	</div>
+	{%endfor%}
+	<button id="show"> New Project</button>
+	<a href ="/logout"> Logout </a>
+	<script type='text/javascript'>
+	$(document).ready(function(){
+		function getCookie(name) {
+			var cookieValue = null;
+			if (document.cookie && document.cookie != '') {
+				var cookies = document.cookie.split(';');
+				for (var i = 0; i < cookies.length; i++) {
+					var cookie = jQuery.trim(cookies[i]);
+					// Does this cookie string begin with the name we want?
+					if (cookie.substring(0, name.length + 1) == (name + '=')) {
+						cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+						break;
+					}
+				}
+			}
+			return cookieValue;
+		}
+		var csrftoken = getCookie('csrftoken');
+		function csrfSafeMethod(method) {
+			// these HTTP methods do not require CSRF protection
+			return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+		}
+		function sameOrigin(url) {
+			// test that a given url is a same-origin URL
+			// url could be relative or scheme relative or absolute
+			var host = document.location.host; // host + port
+			var protocol = document.location.protocol;
+			var sr_origin = '//' + host;
+			var origin = protocol + sr_origin;
+			// Allow absolute or scheme relative URLs to same origin
+			return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+				(url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+				// or any other URL that isn't scheme relative or absolute i.e relative.
+				!(/^(\/\/|http:|https:).*/.test(url));
+		}
+		var dialog = document.getElementById('window');  
+		$(document).on("click", "#show", function() {  
+			console.log("Showing");
+			dialog.show();  
+		});  
+		$(document).on("click", "#submit",  function() {
+			user = "{{username}}";
+			name = document.getElementById("projectname").value;
+			description = document.getElementById("projectdescription").value;
+			data = '{"username":"'+user+'", "name":"'+name+'", "description":"'+description+'"}';
+			$.ajaxSetup({
+				beforeSend: function(xhr, settings) {
+				if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
+					// Send the token to same-origin, relative URLs only.
+					// Send the token only if the method warrants CSRF protection
+					// Using the CSRFToken value acquired earlier
+					xhr.setRequestHeader("X-CSRFToken", csrftoken);
+					}
+				}
+			});
+			console.log(data);
+			$.ajax({
+				url: "/automata/projects",
+				type: "POST",
+				data: data,
+				contentType: "application/json",
+				success:function(response){
+					dialog.close();
+					location.reload();
+				},
+				error:function (xhr, textStatus, thrownError){
+					console.log(xhr);
+					console.log(textStatus);
+					console.log(thrownError);
+					alert("xhr status: " + xhr.statusText);
+				},
+
+			});
+		});});  
+	</script>
+{% endblock %}
