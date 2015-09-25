@@ -72,7 +72,7 @@ class ProjectTrie(APIView):
         for log in logs:
             
             trie_step = event_trie
-            for event in log.event_set.all():
+            for event in log.event_set.all().order_by('date_stamp'):
                 try:
                     step = trie_step["links"][event.name]
                     step['count'] += 1
