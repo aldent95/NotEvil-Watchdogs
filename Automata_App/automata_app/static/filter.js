@@ -13,14 +13,11 @@ var freqSlider = d3.slider().value(0).on("slide", function(evt, value) {
 });
 
 
-    
-d3.select('#freqSlider').call(freqSlider);
-
 
 d3.select(".buttonPanel").append("div").html("<br>"); //need a space, haven't aligned yet
 
 d3.select(".buttonPanel").append("div").style("height", buttonHeight).style("width", 300).call(freqSlider);
-var sliderPanel = d3.select(".buttonPanel").append("div").style("height", buttonHeight).style("width", 300).;
+var sliderPanel = d3.select(".buttonPanel").append("div").style("height", buttonHeight).style("width", 300);
 	sliderPanel.append("span").attr("id", "freqText");
 	sliderPanel.append("div").call(freqSlider);
 buttonPanel.append("button").style("height", buttonHeight).style("width", buttonWidth).on("click", function(d){getValues()});
