@@ -15,10 +15,10 @@ var freqSlider = d3.slider().value(0).on("slide", function(evt, value) {
 
 
 
-var sliderPanel = buttonPanel.append("div").style("height", buttonHeight).style("width", 300).style("display", "inline");
+var sliderPanel = buttonPanel.append("div").style("height", buttonHeight).style("width", 300).style("display", "inline-block");
 	sliderPanel.append("span").attr("id", "freqText").html(minCount);
 	sliderPanel.append("div").call(freqSlider);
-buttonPanel.append("button").style("height", buttonHeight).style("width", buttonWidth).on("click", function(d){getValues()});
+buttonPanel.append("button").style("height", buttonHeight).style("width", buttonWidth).style("display", "inline").on("click", function(d){getValues()}).html("Update <br> MinFreq");
 function getValues(){
 
 	svg.selectAll(".link").data([""]).exit().remove();
