@@ -72,6 +72,9 @@ def parseFile(args):
         except KeyError: 
             groupedData[row["Incident_ID"]] = [row,]
 
+    print "\nNumber of logs:"
+    print len(groupedData.keys())
+    print
 
     for key, rows in groupedData.iteritems():
 
@@ -91,8 +94,7 @@ def parseFile(args):
             events.append(eventObj)
 
 
-        data = {"events" : events, "metadata" : metaData}
-        pp = pprint.PrettyPrinter(indent=4)
+        data = {"uuid": key, "events" : events, "metadata" : metaData}
 
         url = args.url + "automata/projects/" + args.p_uuid + "/logs"
 
