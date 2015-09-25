@@ -14,8 +14,10 @@ var freqSlider = d3.slider().value(0).on("slide", function(evt, value) {
 
 
     
-d3.select('#freqSlider').call(freqSlider);
+//d3.select('#freqSlider').call(freqSlider);
 
+d3.select(".buttonPanel").append("svg").style("height", buttonHeight).style("width", 300).call(freqSlider);
+buttonPanel.append("button").style("height", buttonHeight).style("width", buttonWidth).on("click", function(d){getValues()});
 function getValues(){
 
 	svg.selectAll(".link").data([""]).exit().remove();
@@ -28,10 +30,17 @@ function getValues(){
 	while (nodes.length) { nodes.pop(); }
     count = 0;
 
+	if(test){
 	$.getJSON("/static/trie.json", function(json) {
-    	parseRoot(json);
-    	console.log(count + " Nodes");
+	    parseRoot(json);
+	    console.log(count + " Nodes");
 	});
+	} else{
+	$.getJSON("/automata/projects/"+ p_uuid +"/trie", function(json) {
+	    parseRoot(json);
+	    console.log(count + " Nodes");
+	});
+};
 	
 	redraw();
 
