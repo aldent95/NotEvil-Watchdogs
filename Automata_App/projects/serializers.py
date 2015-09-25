@@ -16,6 +16,7 @@ class ProjectSerializer(serializers.Serializer):
 
 
 class LogSerializer(serializers.Serializer):
+    uuid = serializers.CharField(max_length=100, required=False)
     metadata = JSONSerializerField()
 
 

@@ -72,7 +72,7 @@ class ProjectTrie(APIView):
         for log in logs:
             
             trie_step = event_trie
-            for event in log.event_set.all():
+            for event in log.event_set.all().order_by('date_stamp'):
                 try:
                     step = trie_step["links"][event.name]
                     step['count'] += 1
@@ -119,12 +119,23 @@ class LogList(APIView):
         project = Project.objects.get(uuid=p_uuid)
 
         serializer = LogSerializer(data=request.data)
-           
-        if serializer.is_valid():
-            data = serializer.validated_data
-            log = Log.objects.create(metadata=data['metadata'], project=project)
-        else:
-            log = Log.objects.create(project=project)
+        
+        try:
+            if serializer.is_valid():
+                data = serializer.validated_data
+                try:
+                    log = Log.objects.create(uuid=data['uuid'], metadata=data['metadata'], project=project)
+                except KeyError:
+                    log = Log.objects.create(metadata=data['metadata'], project=project)
+            else:
+                try:
+                    log = Log.objects.create(uuid=data['uuid'], project=project)
+                except KeyError:
+                    log = Log.objects.create(project=project)
+        except Exception as e:
+            return Response({'errors': ["log already added"]}, status=400)
+                
+
 
         if "events" not in request.data:
             log.delete()
