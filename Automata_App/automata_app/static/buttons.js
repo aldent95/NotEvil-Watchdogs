@@ -3,7 +3,7 @@ var buttonWidth = 100;
 var labelsShown = true;
 
 var body = d3.select("body");
-var buttonPanel = body.append("div");
+var buttonPanel = body.append("div").attr("class", "buttonPanel");
 
 var labelButton = buttonPanel.append("button")
 	.style("height", buttonHeight)
