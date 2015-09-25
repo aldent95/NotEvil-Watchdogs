@@ -1,4 +1,3 @@
-var data;
 var inputNodes = [];
 var inputLinks = [];
 
