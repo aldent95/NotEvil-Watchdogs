@@ -4,7 +4,24 @@
 
 {% block content %}
 	<h2>Visualisation</h2>
-	
+	<!--Filter in here -->
+	<style>
+  .wrapper{
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  </style>
+<div class="wrapper">
+     <h2 align="center"> Filters </h2>
+	<p> Set frequency: <span id="freqText">0</span></p>
+	<div id="freqSlider"></div>
+	</br>
+</br>
+	<div align="center">
+  		<button onclick="getValues()">Submit</button> 
+	</div>
+</div>
 {% endblock %}
 
 
@@ -20,6 +37,8 @@
 {% load staticfiles %}
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src = "{% static 'd3.min.js' %}"></script>
+<script src = "{% static 'd3.slider.js' %}"></script>
+<script src = "{% static 'filter.js' %}"></script>
 <script src = "{% static 'auto_chart.js' %}"></script>
 <script src = "{% static 'get_input.js' %}"></script>
 <script src = "{% static 'buttons.js' %}"></script>
