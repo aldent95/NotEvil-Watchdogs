@@ -15,7 +15,7 @@ var freqSlider = d3.slider().value(0).on("slide", function(evt, value) {
 
 
 
-var sliderPanel = d3.select(".buttonPanel").append("div").style("height", buttonHeight).style("width", 300).style("position", "absolute").style("left", "50%");
+var sliderPanel = buttonPanel.append("div").style("height", buttonHeight).style("width", 300).style("display", "inline");
 	sliderPanel.append("span").attr("id", "freqText").html(minCount);
 	sliderPanel.append("div").call(freqSlider);
 buttonPanel.append("button").style("height", buttonHeight).style("width", buttonWidth).on("click", function(d){getValues()});
