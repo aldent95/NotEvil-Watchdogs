@@ -9,14 +9,14 @@ var dateSlider = d3.slider().scale(d3.scale.ordinal().domain([
 d3.select('#dateSlider').call(dateSlider);
 */
 var freqSlider = d3.slider().value(0).on("slide", function(evt, value) {
-    d3.selectAll('#freqText').text(Math.round(value*3));
+    d3.selectAll('#freqText').text("Min Frequency: " + Math.round(value*3));
 });
 
 
 
 
 var sliderPanel = buttonPanel.append("div").style("height", buttonHeight).style("width", 300).style("display", "inline-block");
-	sliderPanel.append("span").attr("id", "freqText").html(minCount);
+	sliderPanel.append("span").attr("id", "freqText").html("Min Frequency: " + minCount);
 	sliderPanel.append("div").call(freqSlider);
 buttonPanel.append("button").style("height", buttonHeight).style("width", buttonWidth).style("display", "inline").on("click", function(d){getValues()}).html("Update <br> MinFreq");
 function getValues(){
