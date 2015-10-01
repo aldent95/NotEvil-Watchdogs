@@ -1,10 +1,16 @@
 {% extends 'base.html' %}
 
 {% block title %} Visualisation One {% endblock %}
+{% block stylesheets %} 
+{% load staticfiles %}
+<!--visualisation css -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/visualisation.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'slider/d3.slider.css' %}">
+{% endblock %}
 
 {% block content %}
 	<h2>Visualisation</h2>
-	<!--Filter in here -->
+	<!--Buttons, logout, projects, add log -->
 {% endblock %}
 
 
@@ -19,10 +25,10 @@
 </script>
 {% load staticfiles %}
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src = "{% static 'd3.min.js' %}"></script>
-<script src = "{% static 'd3.slider.js' %}"></script>
-<script src = "{% static 'auto_chart.js' %}"></script>
-<script src = "{% static 'get_input.js' %}"></script>
-<script src = "{% static 'buttons.js' %}"></script>
-<script src = "{% static 'filter.js' %}"></script>
+<script src = "{% static 'slider/d3.min.js' %}"></script>
+<script src = "{% static 'slider/d3.slider.js' %}"></script>
+<script src = "{% static 'js/auto_chart.js' %}"></script>
+<script src = "{% static 'js/get_input.js' %}"></script>
+<script src = "{% static 'js/buttons.js' %}"></script>
+<script src = "{% static 'js/filter.js' %}"></script>
 {% endblock %}

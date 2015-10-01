@@ -1,5 +1,9 @@
-body{
-	background-color: #CCC;
+#freqText{
+	color: #669999;
+}
+
+.buttonPanel{
+	padding: 10px 0px 0px;
 }
 
 .chart{
@@ -15,11 +19,13 @@ body{
 	border: 1px solid #999;
 	color: #722;
 	width: calc(25% - 15px);
+	height: 80%;
 	float: right;
 }
 
 
 svg {
+  border: 1px solid #999;
   background-color: #fff;
   color: #000;
 }
@@ -30,31 +36,43 @@ svg {
 
 .node_selected {
     fill: #ccc;
-    stroke: #722;
+    stroke: #f0f;
     stroke-width: 2px;
 }
 
 .circle_mouseover{
-	fill: #c00;
+	fill: #ff0;
     stroke: #fff;
     stroke-width: 2px;
 }
 
 .circle_root{
-	fill: #f0f;
+	fill: #0f0;
 	stroke: #fff;
     stroke-width: 2px;
 }
 
 .circle_root_selected{
-	fill: #f0f;
-	stroke: #722;
+	fill: #0f0;
+	stroke: #f0f;
     stroke-width: 2px;
 }
 
+.circle_end{
+	fill: #f00;
+	stroke: #fff;
+	stroke-width: 2px;
+}
+
+.circle_end_selected{
+	fill: #f00;
+	stroke: #f0f;
+	stroke-width: 2px;
+}
+
 .node_selected_mouseover{
-	fill: #c00;
-	stroke: #722;
+	fill: #ff0;
+	stroke: #f0f;
     stroke-width: 2px;
 }
 
