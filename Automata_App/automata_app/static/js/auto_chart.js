@@ -4,7 +4,7 @@ var w = (window.innerWidth * 0.75) - 15,
 	h = (window.innerHeight * 0.8),
 	r = 15, //circle default radius
 	l = 80; //edge length
-	logW = (screen.width * 0.2) - 15;
+	logW = (window.innerWidth * 0.2) - 15;
 	console.log(h);
 
 var maxNodes = 7;	//for testing
