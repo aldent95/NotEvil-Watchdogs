@@ -47,8 +47,8 @@ def projectshome(request):
         context['username'] = str(user)
         return render(request, 'projects/home.html', context)
         
-def login(request):
+def logout(request):
         context={}
-        template = loader.get_template('registration/login.html')
+        template = loader.get_template('registration/logout.html')
         return HttpResponse(template.render(context))
         
