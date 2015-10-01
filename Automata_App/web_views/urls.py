@@ -22,9 +22,10 @@ from django.views.generic import TemplateView
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^visualisation$', views.test_visualisation, name='visualisation'),
+    url(r'^projects/$', views.projectshome, name='projects'),
     url(r'^projects/(?P<p_uuid>\w+)/visualisation$', views.visualisation, name='visualisation'),
     url(r'^signup/$', views.signup, name='singup'),
-    url(r'^login/$', auth_views.login, {'template_name': 'registration/login.html'}),
+    url(r'^login/$', auth_views.login, {'template_name': 'registration/login.html'}, name='login'),
     url('^', include('django.contrib.auth.urls'))
 #    url(r'^authenticated/$', views.authencated, name='authencated')
 ]
