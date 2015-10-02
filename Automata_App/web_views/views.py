@@ -29,7 +29,7 @@ def signup(request):
         form = AppRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('registration/signup_complete.html')
+            return HttpResponseRedirect('/login')
     else:
         args={}
         args.update(csrf(request))
@@ -47,8 +47,8 @@ def projectshome(request):
         context['username'] = str(user)
         return render(request, 'projects/home.html', context)
         
-def login(request):
+def logout(request):
         context={}
-        template = loader.get_template('registration/login.html')
+        template = loader.get_template('registration/logout.html')
         return HttpResponse(template.render(context))
         
