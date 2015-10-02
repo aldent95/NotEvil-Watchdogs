@@ -1,7 +1,15 @@
 {% extends "base.html" %}
-
+{% block title %}
+Login 
+{% endblock %}
+{% block stylesheets %} 
+{% load staticfiles %}
+<!--visualisation css -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+{% endblock %}
 {% block content %}
 
+<div id="loginDiv">
 {% if form.errors %}
 <p>Your username and password didn't match. Please try again.</p>
 {% endif %}
@@ -14,6 +22,8 @@
     <p>Please login to see this page.</p>
     {% endif %}
 {% endif %}
+
+<p> Please enter your credentials </p>
 
 <form method="post" action="{% url 'login' %}">
 {% csrf_token %}
@@ -28,10 +38,14 @@
 </tr>
 </table>
 
+
 <input type="submit" value="login" />
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
 
 <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+
+</div>
+
 
 {% endblock %}

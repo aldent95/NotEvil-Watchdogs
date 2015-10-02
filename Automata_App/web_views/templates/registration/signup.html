@@ -1,7 +1,15 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block title %}
+Sign up - BAM
+{% endblock %}
+{% block stylesheets %} 
+{% load staticfiles %}
+<!--visualisation css -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/sign_up.css' %}">
+{% endblock %}
 
+{% block content %}
 
 <div id='sign_up'>
 <form method="post" action="">
