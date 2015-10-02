@@ -1,4 +1,4 @@
-#sign_up {
+#loginDiv {
 	width: 400px;
 	position: relative;
 	margin: auto auto;
@@ -8,7 +8,7 @@
 }
 
 form{
-	padding: 10px 70px;
+	padding: 20px 30px;
 	width: 400px;
 }
 
@@ -31,4 +31,5 @@ input{
 
 input[type="submit"] {
 	margin-top: 20;
+	margin-left: 84;
 }
