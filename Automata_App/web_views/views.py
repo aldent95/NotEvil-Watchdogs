@@ -7,6 +7,7 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from form import AppRegistrationForm
 from django.views.decorators.csrf import requires_csrf_token
+from projects.models import Project
 
 
 def index(request):
