@@ -9,7 +9,7 @@ var w = (window.innerWidth * 0.75) - 15,
 
 var maxNodes = 7;	//for testing
 var	selectedNode;
-var help = false;
+var onNode = false;
 var links = [];
 var nodes = [];
 var count = 0;
@@ -153,14 +153,22 @@ function redraw(){
   			if(d.root){d3.select(this).attr("class", "circle_root_selected");}
   			else if(d.hasChildren){d3.select(this).attr("class", "node_selected");}
   			else {d3.select(this).attr("class", "circle_end_selected");}
+  			selectedNode = d;
   			updateLogOut(d);
+    	})
+		.on("mouseleave", function(d){
+    		onNode = false;
+    	})
+    	.on("mouseenter", function(d){
+    		onNode = true;
     	})
   		.call(force.drag)
 
   	newNode.append("text") //updates labels
   		.attr("x", 20)
   		.attr("dy", ".35em")
-  		.attr("background-color", "#fff")
+  		.style("background-color", "#fff")
+  		.style("pointer-events", "none")
   		.text(function(d){return d.name;});
 
 
@@ -174,18 +182,16 @@ function redraw(){
     force.start();
 }
 
-/*
-	Generates a random node attached as the target of an edge to a random node already in the graph
-	(for testing purposes)
-*/
-function addRandom(){
-	if(count >= maxNodes){return;}
-	var xVal = Math.random() * w,
-		yVal = Math.random() * h;
-	nodes.push({id: count, size: 1, x: xVal, y: yVal});
-	var start = parseInt(Math.random()*(count-1));
-	links.push({source: start, target: count});
-	count++;
+var children = [];
+
+function getAllChildren(parentId){
+	for(edge in links){
+		if(edge.source == parentId){
+			children.push(edge.target);
+			getAllChildren(edge.target);
+		}
+	}
+	return children;
 }
 
 /*
@@ -238,22 +244,26 @@ function rescale() {
 function resize() {
     w = (window.innerWidth * 0.75) - 15,
     h = (window.innerHeight * 0.8);
-    //rect.attr("width", w).attr("height", h);
-    outer.attr("width", w).attr("height", h);
-    svg.attr("width", w).attr("height", h);
-    //rect.attr("width", w).attr("height", h);
+    logW = (window.innerWidth * 0.25) - 25;
+	console.log("innerWidth: "+ window.innerWidth + " w: " + w + " logW: " + logW);
+    rect.style("width", w).style("height", h);
+    outer.style("width", w).style("height", h);
+    svg.style("width", w).style("height", h);
+   	rect.style("width", w).style("height", h);
     force.size([w, h]).resume();
     force.start();
-    log.attr("width", w).attr("height", h);
+    log.style("width", logW).style("height", h);
   }
 
 function mousedown(){
-	svg.call(d3.behavior.zoom().on("zoom"), rescale);
-	return;
+	if(!onNode){
+		svg.call(d3.behavior.zoom().on("zoom"), rescale);
+		return;
+	}
 }
 
 function mouseup(){
-
+	svg.call(d3.behavior.zoom().on("zoom"), null);
 }
 /*
 	Sets the log contents to be the data of the given Node

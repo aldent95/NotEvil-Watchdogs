@@ -11,7 +11,6 @@
 	background-color: #fff;
 	border: 1px solid #999;
 	height: 80%;
-	width: calc(75% - 15px);
 }
 
 .logOut{
@@ -19,7 +18,6 @@
 	background-color: #fff;
 	border: 1px solid #999;
 	color: #722;
-	width: calc(25% - 15px);
 	height: 80%;
 	float: right;
 }
