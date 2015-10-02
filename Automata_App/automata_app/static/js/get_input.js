@@ -50,12 +50,14 @@ function calcNodeSize(nodeSize, type){
 
 if(test){
 	$.getJSON("/static/trie.json", function(json) {
-	    parseRoot(json);
+	    storedTrie = json;
+	    parseRoot(storedTrie);
 	    console.log(count + " Nodes");
 	});
 } else{
 	$.getJSON("/automata/projects/"+ p_uuid +"/trie", function(json) {
-	    parseRoot(json);
+		storedTrie = json;
+	    parseRoot(storedTrie);
 	    console.log(count + " Nodes");
 	});
 };

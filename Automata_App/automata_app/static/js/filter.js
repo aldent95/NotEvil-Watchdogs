@@ -26,16 +26,8 @@ function getValues(){
 	while (nodes.length) { nodes.pop(); }
     count = 0;
 
-	if(test){
-	$.getJSON("/static/trie.json", function(json) {
-	    parseRoot(json);
-	    console.log(count + " Nodes");
-	});
-	} else{
-	$.getJSON("/automata/projects/"+ p_uuid +"/trie", function(json) {
-	    parseRoot(json);
-	    console.log(count + " Nodes");
-	});
+	parseRoot(storedTrie);
+	console.log(count + " Nodes");
 };
 	
 	redraw();
