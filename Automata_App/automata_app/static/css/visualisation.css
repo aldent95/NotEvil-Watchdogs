@@ -1,30 +1,9 @@
-body {
-	background-color: yellow;
-} 
-
-h1 {
-	background-color: #00ff00;
+#freqText{
+	color: #669999;
 }
 
-#filterDiv {
-	background-color: red;
-	height: 10%;
-	width: 100%;
-	margin: 0 auto;
-    text-align: left;
-}
-
-#visLogDiv {
-	background-color: blue;
-	height: 10%;
-	width: 100%;
-	margin: 0 auto;
-    text-align: left;
-}
-
-
-body{
-	background-color: #CCC;
+.buttonPanel{
+	padding: 10px 0px 0px;
 }
 
 .chart{
@@ -46,6 +25,7 @@ body{
 
 
 svg {
+  border: 1px solid #999;
   background-color: #fff;
   color: #000;
 }
