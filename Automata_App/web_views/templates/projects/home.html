@@ -9,20 +9,44 @@
 		<input type="text" name="projectname" id="projectname">
 		<p>Description</p>
 		<input type="text" name="projectdescription" id="projectdescription">
-		<button id="submit">Submit</button>
+		<div>
+			<button id="submit">Submit</button>
+			<button id="close">Close</button>
+		</div>
+	</dialog>
+	<dialog id="json">
+		<div><h3>Enter log data</h3></div>
+		<div class="submissionfield"><input name="entry" type="text" id="jsonEntry"></div>
+		<div>
+			<button id="jsonSubmit">Submit</button>
+			<button id="jsonHelp">Help</button>
+			<button id="jsonClose">Close</button>
+		</div>
+	</dialog>
+	<dialog id="help">
+	<div><h3>Format Required for JSON Data</h3></div>
+	<p>{"uuid":number,   (only needed if you want each log to have a unique ID)</p>
+	<p>		"events":[{</p>
+	<p>			"name":(event Name), "data_stamp": (event date stamp, see note), "metadata":{(can be empty)}</p>
+	<p>		}, (can have more events after the first)],</p>
+	<p>		"metadata":{(can be empty)}</p>
+	<p>}</p>
+	<button id="helpClose">Close</button>
 	</dialog>
 	<h2>Projects</h2>
 	{% for project in project_list %}
 	<div>
 		<h3> {{ project.name}}</h3>
 		<p> {{ project.description}}</p>
-		<a href = "/projects/{{project.uuid}}/visualisation"> Project ID {{project.uuid}}</a>
+		<div><button class="logButton" id="{{project.uuid}}">Add Log</button></div>
+		<div><a href = "/projects/{{project.uuid}}/visualisation"> Project ID {{project.uuid}}</a></div>
 	</div>
 	{%endfor%}
 	<button id="show"> New Project</button>
 	<a href ="/logout"> Logout </a>
 	<script type='text/javascript'>
 	$(document).ready(function(){
+		var activeID = -1;
 		function getCookie(name) {
 			var cookieValue = null;
 			if (document.cookie && document.cookie != '') {
@@ -58,9 +82,15 @@
 		}
 		var dialog = document.getElementById('window');  
 		$(document).on("click", "#show", function() {  
-			console.log("Showing");
-			dialog.show();  
-		});  
+			document.getElementById("window").show();  
+		});
+		$(document).on("click", "#jsonHelp", function() {  
+			document.getElementById("help").show();  
+		});
+		$(".logButton").click(function(){
+			activeID = this.id;
+			document.getElementById("json").show();
+		});
 		$(document).on("click", "#submit",  function() {
 			user = "{{username}}";
 			name = document.getElementById("projectname").value;
@@ -76,7 +106,6 @@
 					}
 				}
 			});
-			console.log(data);
 			$.ajax({
 				url: "/automata/projects",
 				type: "POST",
@@ -94,6 +123,47 @@
 				},
 
 			});
-		});});  
+		});
+		$(document).on("click", "#jsonSubmit",  function() {
+			data = document.getElementById("jsonEntry").text()
+			$.ajaxSetup({
+				beforeSend: function(xhr, settings) {
+				if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
+					// Send the token to same-origin, relative URLs only.
+					// Send the token only if the method warrants CSRF protection
+					// Using the CSRFToken value acquired earlier
+					xhr.setRequestHeader("X-CSRFToken", csrftoken);
+					}
+				}
+			});
+			$.ajax({
+				url: "/automata/projects/" + activeID +"/logs",
+				type: "POST",
+				data: data,
+				contentType: "application/json",
+				success:function(response){
+					document.getElementById("json").close();
+				},
+				error:function (xhr, textStatus, thrownError){
+					console.log(xhr);
+					console.log(textStatus);
+					console.log(thrownError);
+					alert("xhr status: " + xhr.statusText);
+				},
+
+			});
+		});
+		$(document).on("click", "#close", function() {  
+			document.getElementById("window").close();  
+		});
+		$(document).on("click", "#jsonClose", function() {
+			activeID = -1;
+			document.getElementById("json").close();  
+		});
+		$(document).on("click", "#helpClose", function() {  
+			document.getElementById("help").close();  
+		});
+		
+		});  
 	</script>
 {% endblock %}
