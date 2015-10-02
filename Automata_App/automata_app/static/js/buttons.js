@@ -3,7 +3,6 @@ var buttonWidth = 100;
 var labelsShown = true;
 var current = "flatButton";
 var body = d3.select("body");
-
 var buttonPanel = body.append("div");
 
 var allLabelButton = buttonPanel.append("button")
@@ -45,9 +44,10 @@ var logButton = buttonPanel.append("button")
 		if(current == "logButton"){resetSize()}
 		else{
 			current = "logButton";
-			console.log(current);
+			var help = true;
 			body.selectAll("circle").attr("r", function(d){
-				return r * (Math.log(d.size)/Math.log(minCount));
+				return calcNodeSize(d.size, "log");
+				//return r * (Math.pow(d.size, 1/2) / Math.pow(minCount, 1/2));
 			})
 			force.linkDistance(function(d){
 				return(calcNodeSize(d.source.size, "log") + calcNodeSize(d.target.size, "log") + l);//located in get_input.js
@@ -55,7 +55,8 @@ var logButton = buttonPanel.append("button")
 			force.charge(function(d){return (-1)*(calcNodeSize(d.size, "log") * 500 / r)});
 			force.start();
 		}
-	}
+	})
+
 	logButton.append("div").html("Log <br> Sizing");
 
 
@@ -119,6 +120,7 @@ var hideButton = buttonPanel.append("button")
 	})
 	
 	hideButton.append("div").html("Hide <br> Children");
+
 
 function resetSize(){
 	current = "flatButton";
