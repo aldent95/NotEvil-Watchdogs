@@ -55,7 +55,7 @@ var logButton = buttonPanel.append("button")
 			force.charge(function(d){return (-1)*(calcNodeSize(d.size, "log") * 500 / r)});
 			force.start();
 		}
-
+	}
 	logButton.append("div").html("Log <br> Sizing");
 
 
