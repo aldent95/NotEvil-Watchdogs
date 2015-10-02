@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} Visualisation One {% endblock %}
+{% block title %} Visualisation {% endblock %}
 {% block stylesheets %} 
 {% load staticfiles %}
 <!--visualisation css -->
@@ -29,6 +29,8 @@
 	<button id="helpClose">Close</button>
 	</dialog>
 	<h2>Visualisation</h2>
+	<h2> {{ p_name }} </h2>
+	<p> {{ p_description }} </p>
 	<!--Buttons, logout, projects, add log -->
 	<div>
 	<button id='logButton'>Add Log</button>

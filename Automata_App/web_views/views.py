@@ -10,15 +10,21 @@ from django.views.decorators.csrf import requires_csrf_token
 
 
 def index(request):
-	context = {}
-	template = loader.get_template("index.html")
-	return HttpResponse(template.render(context))
+    context = {}
+    template = loader.get_template("index.html")
+    return HttpResponse(template.render(context))
 
 @requires_csrf_token
 def visualisation(request, p_uuid):
-	context = {"p_uuid": p_uuid, "test": False}
-	template = loader.get_template("visualisation.html")
-	return HttpResponse(template.render(context))
+    project = Project.objects.get(uuid=p_uuid)
+    context = {
+        "p_uuid": p_uuid,
+        'p_name': project.name,
+        'p_description': project.description,
+        "test": False
+    }
+    template = loader.get_template("visualisation.html")
+    return HttpResponse(template.render(context))
 
 def test_visualisation(request):
     context = {"test": True}
