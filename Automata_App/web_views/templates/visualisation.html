@@ -100,6 +100,7 @@
 				contentType: "application/json",
 				success:function(response){
 					document.getElementById("json").close();
+					location.reload();
 				},
 				error:function (xhr, textStatus, thrownError){
 					console.log(xhr);
