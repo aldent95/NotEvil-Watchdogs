@@ -16,7 +16,7 @@
 	</dialog>
 	<dialog id="json">
 		<div><h3>Enter log data</h3></div>
-		<div class="submissionfield"><input name="entry" type="text" id="jsonEntry"></div>
+		<div class="submisssionfield "><textarea class='submisssionfield' name="entry" id="jsonEntry"></textarea></div>
 		<div>
 			<button id="jsonSubmit">Submit</button>
 			<button id="jsonHelp">Help</button>
@@ -125,7 +125,7 @@
 			});
 		});
 		$(document).on("click", "#jsonSubmit",  function() {
-			data = document.getElementById("jsonEntry").text()
+			data = $('textarea#jsonEntry').val();
 			$.ajaxSetup({
 				beforeSend: function(xhr, settings) {
 				if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
