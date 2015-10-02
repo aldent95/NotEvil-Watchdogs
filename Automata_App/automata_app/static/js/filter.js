@@ -28,7 +28,6 @@ function getValues(){
 
 	parseRoot(storedTrie);
 	console.log(count + " Nodes");
-};
 	
 	redraw();
 
