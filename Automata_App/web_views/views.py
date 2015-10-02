@@ -14,6 +14,7 @@ def index(request):
 	template = loader.get_template("index.html")
 	return HttpResponse(template.render(context))
 
+@requires_csrf_token
 def visualisation(request, p_uuid):
 	context = {"p_uuid": p_uuid, "test": False}
 	template = loader.get_template("visualisation.html")
