@@ -41,10 +41,10 @@ function parseRoot(aNode){
 	});
 }
 
-function calcNodeSize(nodeSize){
-	//return Math.log(nodeSize) / Math.log(minCount);			//log
-	//return Math.sqrt(nodeSize) / Math.sqrt(minCount);			//sqrt
-	//return Math.pow(nodeSize, 1/3) / Math.pow(minCount, 1/3)	//cubrt
+function calcNodeSize(nodeSize, type){
+	if(type === "log"){return r * Math.log(nodeSize) / Math.log(minCount);}				//log
+	if(type === "sqrt"){return r * Math.sqrt(nodeSize) / Math.sqrt(minCount);}			//sqrt
+	if(type === "cube"){return r * Math.pow(nodeSize, 1/3) / Math.pow(minCount, 1/3)}	//cbrt
 	return nodeSize;
 }
 
