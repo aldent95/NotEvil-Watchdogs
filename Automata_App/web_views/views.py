@@ -16,7 +16,13 @@ def index(request):
 
 @requires_csrf_token
 def visualisation(request, p_uuid):
-	context = {"p_uuid": p_uuid, "test": False}
+    project = Project.objects.get(uuid=p_uuid)
+	context = {
+        "p_uuid": p_uuid,
+        'p_name': project.name,
+        'p_description': project.description,
+        "test": False
+    }
 	template = loader.get_template("visualisation.html")
 	return HttpResponse(template.render(context))
 
