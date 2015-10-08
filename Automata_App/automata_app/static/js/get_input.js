@@ -7,6 +7,7 @@ function parseData(parentIndex, aNode, nodeSize, root){
 	if(isArrayEmpty(aNode.links)){addNode(current, calcNodeSize(nodeSize), aNode.event, count, count, root, false);}
 	else{
 		addNode(current, calcNodeSize(nodeSize), aNode.event, count, count, root, true);
+		cullFromRatio(aNode, nodeSize);
 		jQuery.each(aNode.links, function(index, value){
 			if(value.count > minCount){
 				parseData(current, value.child, value.count, false);
