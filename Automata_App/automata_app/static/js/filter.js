@@ -1,7 +1,7 @@
 var frequencyMultiplier = 3;
 var axis = d3.svg.axis().orient("top").ticks(1);
 
-var freqSlider = d3.slider().value(0).on("slide", function(evt, value) {
+var freqSlider = d3.slider().value(minCount/3).on("slide", function(evt, value) {
     d3.selectAll('#freqText').text("Min Frequency: " + Math.round(value*3));
 });
 
@@ -26,17 +26,8 @@ function getValues(){
 	while (nodes.length) { nodes.pop(); }
     count = 0;
 
-	if(test){
-	$.getJSON("/static/trie.json", function(json) {
-	    parseRoot(json);
-	    console.log(count + " Nodes");
-	});
-	} else{
-	$.getJSON("/automata/projects/"+ p_uuid +"/trie", function(json) {
-	    parseRoot(json);
-	    console.log(count + " Nodes");
-	});
-};
+	parseRoot(storedTrie);
+	console.log(count + " Nodes");
 	
 	redraw();
 
