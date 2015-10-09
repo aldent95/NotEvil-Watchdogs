@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from form import AppRegistrationForm
 from django.views.decorators.csrf import requires_csrf_token
 from projects.models import Project
-from django.contrib.auth import logout
+from django.contrib.auth import dj_logout
 
 
 def index(request):
@@ -58,7 +58,7 @@ def projectshome(request):
         return render(request, 'projects/home.html', context)
         
 def logout(request):
-        logout(request)
+        dj_logout(request)
         context={}
         template = loader.get_template('registration/logout.html')
         return HttpResponse(template.render(context))
