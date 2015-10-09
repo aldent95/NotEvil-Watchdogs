@@ -104,11 +104,7 @@ var hideButton = buttonPanel.append("button")
 		console.log(selectedNode.id);
 		children = [];
 		var allChildren = getAllChildren(selectedNode.id);
-		var consolelog = "";
-		for(child in allChildren){
-			consolelog = consolelog + ", " +child;
-		}
-		console.log(consolelog);
+		console.log(allChildren);
 	})
 	
 	hideButton.append("div").html("Hide <br> Children");
