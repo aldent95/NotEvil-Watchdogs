@@ -200,7 +200,7 @@ function getAllChildren(parentId){
 */
 function addNode(newId, size, name, newX, newY, root, hasChildren){
 	//inputNodes.push({id: inputCount-1, size: 1, name: aNode.event, x: inputCount, y: inputCount});
-
+	//if(nodes.length >= 1000){return;}
 	nodes.push({id: newId, size: size, name: name, x: parseInt(Math.random()*(w-100)+50), y: parseInt(Math.random()*(h-100)+50), root: root, hasChildren: hasChildren});
 	redraw();
 }
