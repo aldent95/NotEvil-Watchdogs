@@ -45,12 +45,16 @@ var squareButton = buttonPanel.append("button")
 		else{
 			current = "squareButton";
 			var help = true;
-			body.selectAll("circle").attr("r", function(d){
-				return calcNodeSize(d.size, "sqrt");
+			body.selectAll("circle + text").attr("font-size", function(d){
+				return ((calcNodeSize(d.size, "sqrt")/10)+px);
 				//return r * (Math.pow(d.size, 1/2) / Math.pow(minCount, 1/2));
 			})
 			force.linkDistance(function(d){
 				return(calcNodeSize(d.source.size, "sqrt")*1.5 + calcNodeSize(d.target.size, "sqrt")*1.5 + l);//located in get_input.js
+			})
+			body.selectAll("circle").attr("r", function(d){
+				return calcNodeSize(d.size, "sqrt");
+				//return r * (Math.pow(d.size, 1/2) / Math.pow(minCount, 1/2));
 			})
 			force.charge(function(d){return (-3)*(calcNodeSize(d.size, "sqrt") * 500 / r)});
 			force.start();
