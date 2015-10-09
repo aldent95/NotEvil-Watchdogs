@@ -17,7 +17,7 @@ var minCount = 50;
 
 
 if (!test){
-	minCount = 1;
+	minCount = 0.333;
 };
 
 
