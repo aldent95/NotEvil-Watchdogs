@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from form import AppRegistrationForm
 from django.views.decorators.csrf import requires_csrf_token
 from projects.models import Project
-from django.contrib.auth import dj_logout
+from django.contrib.auth import logout as dj_logout
 
 
 def index(request):
