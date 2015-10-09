@@ -185,10 +185,12 @@ function redraw(){
 var children = [];
 
 function getAllChildren(parentId){
-	for(edge in links){
-		if(edge.source == parentId){
+	for(var i = 0; i < links.length; i++){
+		edge = links[i];
+		if(edge.source.id == parentId){
 			children.push(edge.target);
 			getAllChildren(edge.target);
+			console.log(edge.source);
 		}
 	}
 	return children;
