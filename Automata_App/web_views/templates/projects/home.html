@@ -33,19 +33,18 @@
 	<p>}</p>
 	<button id="helpClose">Close</button>
 	</dialog>
-	<h2>Projects</h2>
-	<p> Hello {{ username }}, these are your projects: </p>
+	<p> Hello {{ username }}, these are your current projects: </p>
 
 	{% for project in project_list %}
 	<div>
 		<h3> {{ project.name}}</h3>
 		<p> {{ project.description}}</p>
-		<div><button class="logButton" id="{{project.uuid}}">Add Log</button></div>
+		<div><button class="logButton customButton" id="{{project.uuid}}">Add Log</button></div>
 		<div><a href = "/projects/{{project.uuid}}/visualisation"> Project ID {{project.uuid}}</a></div>
 	</div>
 	{%endfor%}
-	<button id="show"> New Project</button>
-	<a href ="/logout"> Logout </a>
+	<button class="customButton" id="show"> New Project</button>
+	<button type="button" class="customButton" onclick="location.href='/logout';">Logout</button>
 	<script type='text/javascript'>
 	$(document).ready(function(){
 		var activeID = -1;
