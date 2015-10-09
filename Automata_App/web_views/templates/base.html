@@ -9,8 +9,11 @@
 		{% endblock %}
     </head>
 	<body>
-		<h1> 
-		{% block title %} {% endblock %} </h1>
+		<div id="header">
+			<h1> {% block title %} {% endblock %} </h1>
+			<button class="customButton" align="right"> Login </button>
+		</div>
+
 		{% block content %}
 		{% endblock %}
 		{% block scripts %}

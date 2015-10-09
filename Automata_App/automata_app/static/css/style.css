@@ -3,9 +3,16 @@ body {
 } 
 
 h1 {
-	background-color: #407F7F;
+	text-align: left;
 }
 
+p {
+	font-family: sans-serif;
+}
+
+.header {
+	background-color: #407F7F;
+}
 
 .submisssionfield { width: 300px; height: 400px; border: 1px solid #999999; padding: 5px; }
 
@@ -29,7 +36,7 @@ h1 {
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
-	font-size:19px;
+	font-size:14px;
 	padding:12px 37px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #283966;
