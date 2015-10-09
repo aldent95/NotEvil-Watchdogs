@@ -220,6 +220,7 @@ function getAllParents(childId){
 function getParents(childId){
 	for(var i = 0; i < links.length; i++){
 		var edge = links[i];
+<<<<<<< HEAD
 		if(edge.target.id == childId){
 			parentNodes.push(edge.source);
 			parentLinks.push(edge);
