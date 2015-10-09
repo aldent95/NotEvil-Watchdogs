@@ -1,7 +1,7 @@
 var frequencyMultiplier = 3;
 var axis = d3.svg.axis().orient("top").ticks(1);
 
-var freqSlider = d3.slider().value(0.333).on("slide", function(evt, value) {
+var freqSlider = d3.slider().value(minCount/3).on("slide", function(evt, value) {
     d3.selectAll('#freqText').text("Min Frequency: " + Math.round(value*3));
 });
 

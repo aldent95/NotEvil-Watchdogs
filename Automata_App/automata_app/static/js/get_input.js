@@ -8,7 +8,7 @@ function parseData(parentIndex, aNode, nodeSize, root){
 	else{
 		addNode(current, calcNodeSize(nodeSize), aNode.event, count, count, root, true);
 		jQuery.each(aNode.links, function(index, value){
-			if(value.count > minCount){
+			if(value.count >= minCount){
 				parseData(current, value.child, value.count, false);
 			}
 		})
@@ -35,7 +35,7 @@ function parseRoot(aNode){
 		return;
 	}
 	jQuery.each(aNode.links, function(index, value){
-		if(value.count > minCount){
+		if(value.count >= minCount){
 			parseData(null, value.child, value.count, true);
 		}
 	});
