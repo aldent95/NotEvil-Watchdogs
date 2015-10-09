@@ -25,11 +25,6 @@ function getValues(){
 	while (links.length) { links.pop(); }
 	while (nodes.length) { nodes.pop(); }
     count = 0;
-
+    redraw();		//vvvvvvvv important!!!!!!!!!!!! Root node breaks without!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	parseRoot(storedTrie);
-	console.log(count + " Nodes");
-	
-	redraw();
-
-    
 }

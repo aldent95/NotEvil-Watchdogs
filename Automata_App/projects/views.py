@@ -58,6 +58,41 @@ class ProjectDetail(APIView):
                 })
 
 
+def merge_metadata(md, event):
+    total = 0.0
+    for val_aggr in md.values():
+        total += val_aggr['total']
+    for key, value in event.metadata.iteritems():
+        try:
+            aggr = md[key]
+            try:
+                val_aggr = aggr['values'][value]
+                val_aggr['count'] += 1.0
+                aggr['total'] += val_aggr['count']
+                total += val_aggr['count']
+            except KeyError:
+                aggr['values'][value] = {
+                    'count': 1.0
+                }
+                aggr['total'] += 1.0
+                total += 1.0
+        except KeyError:
+            md[key] = {
+                'values': {
+                    value: {
+                        'count': 1.0
+                    }
+                },
+                'total': 1.0
+            }
+            total += 1.0
+
+    for val_aggr in md.values():
+        val_aggr["percentage"] = val_aggr['total']/total
+        for value in val_aggr['values'].values():
+            value["percentage"] = value['count']/val_aggr['total']
+
+
 class ProjectTrie(APIView):
 
     def get(self, request, p_uuid):
@@ -75,17 +110,24 @@ class ProjectTrie(APIView):
                 try:
                     step = trie_step["links"][event.name]
                     step['count'] += 1
+
+                    merge_metadata(trie_step["links"][event.name]["metadata"], event)
+
                     trie_step = step["child"]
+
                 except KeyError as e: 
                     trie_step["links"][event.name] = {
                         "count": 1,
                         "child": {
                                 "event": event.name,
                                 "links": {}
-                        }
+                        },
+                        'metadata': {}
                     }
-                    step = trie_step["links"][event.name]["child"]
-                    trie_step = step
+
+                    merge_metadata(trie_step["links"][event.name]["metadata"], event)
+
+                    trie_step = trie_step["links"][event.name]["child"]
 
         context = {"event_trie": event_trie}
 
