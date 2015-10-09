@@ -182,17 +182,50 @@ function redraw(){
     force.start();
 }
 
-var children = [];
+var childNodes = [];
+var childLinks = [];
 
-function getAllChildren(parentId){
+function getAllChild(childId){
+	childNodes = [];
+	childLinks = [];
+
+	getChild(childId);
+
+	return {nodes: childNodes, links: childLinks};
+}
+
+function getChild(childId){
 	for(var i = 0; i < links.length; i++){
 		var edge = links[i];
-		if(edge.source.id == parentId){
-			children.push(edge.target);
-			getAllChildren(edge.target.id);
+		if(edge.source.id == childId){
+			childNodes.push(edge.target);
+			childLinks.push(edge);
+			getAllParents(edge.target.id);
 		}
 	}
-	return children;
+}
+
+var parentNodes = [];
+var parentLinks = [];
+
+function getAllParents(childId){
+	parentNodes = [];
+	parentLinks = [];
+
+	getParents(childId);
+
+	return {nodes: parentNodes, links: parentLinks};
+}
+
+function getParents(childId){
+	for(var i = 0; i < links.length; i++){
+		var edge = links[i];
+		if(edge.target.id == childId){
+			parentNodes.push(edge.source);
+			parentLinks.push(edge);
+			getAllParents(edge.source.id);
+		}
+	}
 }
 
 /*
