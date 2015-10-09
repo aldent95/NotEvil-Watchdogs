@@ -36,30 +36,6 @@ var flatButton = buttonPanel.append("button")
 
 	flatButton.append("div").html("Flat <br> Sizing");
 
-var logButton = buttonPanel.append("button")
-	.style("height", buttonHeight)
-	.style("width", buttonWidth)
-	.attr("class", "logButton")
-	.on("click", function(d){
-		if(current == "logButton"){resetSize()}
-		else{
-			current = "logButton";
-			var help = true;
-			body.selectAll("circle").attr("r", function(d){
-				return calcNodeSize(d.size, "log");
-				//return r * (Math.pow(d.size, 1/2) / Math.pow(minCount, 1/2));
-			})
-			force.linkDistance(function(d){
-				return(calcNodeSize(d.source.size, "log") + calcNodeSize(d.target.size, "log") + l);//located in get_input.js
-			})
-			force.charge(function(d){return (-1)*(calcNodeSize(d.size, "log") * 500 / r)});
-			force.start();
-		}
-	})
-
-	logButton.append("div").html("Log <br> Sizing");
-
-
 var squareButton = buttonPanel.append("button")
 	.style("height", buttonHeight)
 	.style("width", buttonWidth)

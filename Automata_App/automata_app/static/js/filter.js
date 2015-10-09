@@ -27,4 +27,5 @@ function getValues(){
     count = 0;
     redraw();		//vvvvvvvv important!!!!!!!!!!!! Root node breaks without!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	parseRoot(storedTrie);
+	resetSize();
 }
