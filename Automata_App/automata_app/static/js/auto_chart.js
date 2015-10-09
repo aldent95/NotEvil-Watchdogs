@@ -186,11 +186,10 @@ var children = [];
 
 function getAllChildren(parentId){
 	for(var i = 0; i < links.length; i++){
-		edge = links[i];
+		var edge = links[i];
 		if(edge.source.id == parentId){
 			children.push(edge.target);
-			getAllChildren(edge.target);
-			console.log(edge.source);
+			getAllChildren(edge.target.id);
 		}
 	}
 	return children;
