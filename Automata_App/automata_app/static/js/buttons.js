@@ -45,13 +45,6 @@ var squareButton = buttonPanel.append("button")
 		else{
 			current = "squareButton";
 
-			body.selectAll(".link")
-				.attr("stroke", "#ccc")
-				.attr("stroke-width", function(d){
-					console.log(d);
-					return 2;
-				});
-
 			force.linkDistance(function(d){
 				return(calcNodeSize(d.source.size, "sqrt")*1.5 + calcNodeSize(d.target.size, "sqrt")*1.5 + l);//located in get_input.js
 			})
@@ -61,10 +54,16 @@ var squareButton = buttonPanel.append("button")
 			})
                         body.selectAll("circle.circle + text").attr("font-size", function(d){
 				console.log(d);
-                                return ((calcNodeSize(d.size, "sqrt")/10)+px);
+                                return ((calcNodeSize(d.size, "sqrt")/3)+"px");
                                 //return r * (Math.pow(d.size, 1/2) / Math.pow(minCount, 1/2));
                         })
 			force.charge(function(d){return (-3)*(calcNodeSize(d.size, "sqrt") * 500 / r)});
+                        body.selectAll(".link")
+                                .style("stroke", "#ccc")
+                                .style("stroke-width", function(d){
+
+                                        return (calcNodeSize(d.target.size, "sqrt")/7);
+                                });
 			force.start();
 		}
 	})
