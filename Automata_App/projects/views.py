@@ -5,6 +5,7 @@ import json
 from collections import OrderedDict, Iterable
 from projects.models import Project, Log, Event
 from projects.serializers import ProjectSerializer, LogSerializer, EventSerializer
+import hashlib
 
 
 class ProjectList(APIView):
@@ -49,8 +50,10 @@ class ProjectList(APIView):
 class ProjectDetail(APIView):
 
     def get(self, request, p_uuid):
-
-        project = Project.objects.get(uuid=p_uuid)
+        try:
+            project = Project.objects.get(uuid=p_uuid)
+        except Project.DoesNotExist:
+            return Response({'errors': ["Not Found"]}, status=404)
         return Response({
                     'uuid': project.uuid,
                     'name': project.name,
@@ -97,7 +100,10 @@ class ProjectTrie(APIView):
 
     def get(self, request, p_uuid):
 
-        project = Project.objects.get(uuid=p_uuid)
+        try:
+            project = Project.objects.get(uuid=p_uuid)
+        except Project.DoesNotExist:
+            return Response({'errors': ["Not Found"]}, status=404)
 
         logs = project.log_set.all()
 
@@ -157,7 +163,10 @@ class LogList(APIView):
 
     def post(self, request, p_uuid):
 
-        project = Project.objects.get(uuid=p_uuid)
+        try:
+            project = Project.objects.get(uuid=p_uuid)
+        except Project.DoesNotExist:
+            return Response({'errors': ["Not Found"]}, status=404)
 
         serializer = LogSerializer(data=request.data)
         
@@ -165,12 +174,14 @@ class LogList(APIView):
             if serializer.is_valid():
                 data = serializer.validated_data
                 try:
-                    log = Log.objects.create(uuid=data['uuid'], metadata=data['metadata'], project=project)
+                    l_uuid = hashlib.md5(data['uuid'] + p_uuid).hexdigest()
+                    log = Log.objects.create(uuid=l_uuid, metadata=data['metadata'], project=project)
                 except KeyError:
                     log = Log.objects.create(metadata=data['metadata'], project=project)
             else:
                 try:
-                    log = Log.objects.create(uuid=data['uuid'], project=project)
+                    l_uuid = hashlib.md5(data['uuid'] + p_uuid).hexdigest()
+                    log = Log.objects.create(uuid=l_uuid, project=project)
                 except KeyError:
                     log = Log.objects.create(project=project)
         except Exception as e:

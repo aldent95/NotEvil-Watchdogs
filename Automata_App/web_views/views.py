@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from form import AppRegistrationForm
 from django.views.decorators.csrf import requires_csrf_token
 from projects.models import Project
+from django.contrib.auth import logout as dj_logout
 
 
 def index(request):
@@ -15,9 +16,13 @@ def index(request):
     template = loader.get_template("index.html")
     return HttpResponse(template.render(context))
 
+@login_required(login_url='/login/')
 @requires_csrf_token
 def visualisation(request, p_uuid):
-    project = Project.objects.get(uuid=p_uuid)
+    try:
+        project = Project.objects.get(uuid=p_uuid)
+    except Project.DoesNotExist:
+        return render(request, '404.html', {'errorMessage':'The project with the id '+p_uuid+' does not exist'})
     context = {
         "p_uuid": p_uuid,
         'p_name': project.name,
@@ -56,6 +61,7 @@ def projectshome(request):
         return render(request, 'projects/home.html', context)
         
 def logout(request):
+        dj_logout(request)
         context={}
         template = loader.get_template('registration/logout.html')
         return HttpResponse(template.render(context))
