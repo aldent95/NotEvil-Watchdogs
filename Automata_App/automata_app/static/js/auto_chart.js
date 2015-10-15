@@ -189,7 +189,7 @@ function getAllChildren(childId){
 	childNodes = [];
 	childLinks = [];
 
-	getChild(childId);
+	getChildren(childId);
 
 	return {nodes: childNodes, links: childLinks};
 }
@@ -200,7 +200,7 @@ function getChildren(childId){
 		if(edge.source.id == childId){
 			childNodes.push(edge.target);
 			childLinks.push(edge);
-			getAllParents(edge.target.id);
+			getChildren(edge.target.id);
 		}
 	}
 }
@@ -221,9 +221,10 @@ function getParents(childId){
 	for(var i = 0; i < links.length; i++){
 		var edge = links[i];
 		if(edge.target.id == childId){
+		//	var d3seledge = d3.select(edge).style("stroke", "red");
 			parentNodes.push(edge.source);
 			parentLinks.push(edge);
-			getAllParents(edge.source.id);
+			getParents(edge.source.id);
 		}
 	}
 }
