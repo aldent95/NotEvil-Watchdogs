@@ -50,8 +50,10 @@ class ProjectList(APIView):
 class ProjectDetail(APIView):
 
     def get(self, request, p_uuid):
-
-        project = Project.objects.get(uuid=p_uuid)
+        try:
+            project = Project.objects.get(uuid=p_uuid)
+        except Project.DoesNotExist:
+            return Response({'errors': ["Not Found"]}, status=404)
         return Response({
                     'uuid': project.uuid,
                     'name': project.name,
@@ -98,7 +100,10 @@ class ProjectTrie(APIView):
 
     def get(self, request, p_uuid):
 
-        project = Project.objects.get(uuid=p_uuid)
+        try:
+            project = Project.objects.get(uuid=p_uuid)
+        except Project.DoesNotExist:
+            return Response({'errors': ["Not Found"]}, status=404)
 
         logs = project.log_set.all()
 
@@ -158,7 +163,10 @@ class LogList(APIView):
 
     def post(self, request, p_uuid):
 
-        project = Project.objects.get(uuid=p_uuid)
+        try:
+            project = Project.objects.get(uuid=p_uuid)
+        except Project.DoesNotExist:
+            return Response({'errors': ["Not Found"]}, status=404)
 
         serializer = LogSerializer(data=request.data)
         
