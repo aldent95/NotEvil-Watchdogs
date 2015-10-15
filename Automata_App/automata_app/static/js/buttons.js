@@ -102,9 +102,10 @@ var hideButton = buttonPanel.append("button")
 	.attr("class", "logButton")
 	.on("click", function(d){
 		console.log(selectedNode.id);
-		children = [];
 		var allChildren = getAllChildren(selectedNode.id);
+		var allParents = getAllParents(selectedNode.id);
 		console.log(allChildren);
+		console.log(allParents);
 	})
 	
 	hideButton.append("div").html("Hide <br> Children");
