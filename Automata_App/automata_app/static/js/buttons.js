@@ -44,7 +44,13 @@ var squareButton = buttonPanel.append("button")
 		if(current == "squareButton"){resetSize()}
 		else{
 			current = "squareButton";
-			var help = true;
+
+			body.selectAll(".link")
+				.attr("stroke", "#ccc")
+				.attr("stroke-width", function(d){
+					console.log(d);
+					return 2;
+				});
 
 			force.linkDistance(function(d){
 				return(calcNodeSize(d.source.size, "sqrt")*1.5 + calcNodeSize(d.target.size, "sqrt")*1.5 + l);//located in get_input.js
