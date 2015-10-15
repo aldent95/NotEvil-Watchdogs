@@ -185,7 +185,7 @@ function redraw(){
 var childNodes = [];
 var childLinks = [];
 
-function getAllChild(childId){
+function getAllChildren(childId){
 	childNodes = [];
 	childLinks = [];
 
@@ -194,7 +194,7 @@ function getAllChild(childId){
 	return {nodes: childNodes, links: childLinks};
 }
 
-function getChild(childId){
+function getChildren(childId){
 	for(var i = 0; i < links.length; i++){
 		var edge = links[i];
 		if(edge.source.id == childId){
