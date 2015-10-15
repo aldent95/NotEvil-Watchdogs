@@ -5,6 +5,7 @@ import json
 from collections import OrderedDict, Iterable
 from projects.models import Project, Log, Event
 from projects.serializers import ProjectSerializer, LogSerializer, EventSerializer
+import hashlib
 
 
 class ProjectList(APIView):
@@ -165,12 +166,14 @@ class LogList(APIView):
             if serializer.is_valid():
                 data = serializer.validated_data
                 try:
-                    log = Log.objects.create(uuid=data['uuid'], metadata=data['metadata'], project=project)
+                    l_uuid = hashlib.md5(data['uuid'] + p_uuid).hexdigest()
+                    log = Log.objects.create(uuid=l_uuid, metadata=data['metadata'], project=project)
                 except KeyError:
                     log = Log.objects.create(metadata=data['metadata'], project=project)
             else:
                 try:
-                    log = Log.objects.create(uuid=data['uuid'], project=project)
+                    l_uuid = hashlib.md5(data['uuid'] + p_uuid).hexdigest()
+                    log = Log.objects.create(uuid=l_uuid, project=project)
                 except KeyError:
                     log = Log.objects.create(project=project)
         except Exception as e:
