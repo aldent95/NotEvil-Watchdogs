@@ -19,7 +19,10 @@ def index(request):
 @login_required(login_url='/login/')
 @requires_csrf_token
 def visualisation(request, p_uuid):
-    project = Project.objects.get(uuid=p_uuid)
+    try:
+        project = Project.objects.get(uuid=p_uuid)
+    except Project.DoesNotExist:
+        return render(request, '404.html', {'errorMessage':'The project with the id '+p_uuid+' does not exist'})
     context = {
         "p_uuid": p_uuid,
         'p_name': project.name,
