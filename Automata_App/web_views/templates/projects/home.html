@@ -3,7 +3,7 @@
 {% block title %} Projects {% endblock %}
 
 {% block content %}
-	<script src="{% static 'slider/home.js' %}"></script>
+	
 	<dialog id="window">
 		<h3>New Project</h3>
 		<p>Name</p>
@@ -48,4 +48,6 @@
 	<button id="show"> New Project</button>
 	<a href ="/logout"> Logout </a>
 
+	{% load staticfiles %}
+	<script src="{% static 'slider/home.js' %}"></script>
 {% endblock %}
