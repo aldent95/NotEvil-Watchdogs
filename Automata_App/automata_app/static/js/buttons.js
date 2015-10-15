@@ -44,15 +44,23 @@ var squareButton = buttonPanel.append("button")
 		if(current == "squareButton"){resetSize()}
 		else{
 			current = "squareButton";
-			var help = true;
+
+			force.linkDistance(function(d){
+				return(calcNodeSize(d.source.size, "sqrt")*1.5 + calcNodeSize(d.target.size, "sqrt")*1.5 + l);//located in get_input.js
+			})
 			body.selectAll("circle").attr("r", function(d){
 				return calcNodeSize(d.size, "sqrt");
 				//return r * (Math.pow(d.size, 1/2) / Math.pow(minCount, 1/2));
 			})
-			force.linkDistance(function(d){
-				return(calcNodeSize(d.source.size, "sqrt")*1.5 + calcNodeSize(d.target.size, "sqrt")*1.5 + l);//located in get_input.js
+			body.selectAll("circle + text").attr("font-size", function(d){
+				return ((calcNodeSize(d.size, "sqrt")/3)+"px");
 			})
 			force.charge(function(d){return (-3)*(calcNodeSize(d.size, "sqrt") * 500 / r)});
+            body.selectAll(".link")
+            	.style("stroke", "#ccc")
+				.style("stroke-width", function(d){
+					return (calcNodeSize(d.target.size, "sqrt")/6);
+                });
 			force.start();
 		}
 	})
@@ -68,12 +76,20 @@ var cubeButton = buttonPanel.append("button")
 		else{
 			current = "cubeButton";
 			body.selectAll("circle").attr("r", function(d){
-				return r * (Math.pow(d.size, 1/3) / Math.pow(minCount, 1/3));
+				return(calcNodeSize(d.size, "cube"));
 			})
 			force.linkDistance(function(d){
 				return(calcNodeSize(d.source.size, "cube") + calcNodeSize(d.target.size, "cube") + l);//located in get_input.js
 			})
+			body.selectAll("circle + text").attr("font-size", function(d){
+				return ((calcNodeSize(d.size, "cube")/3)+"px");
+			})
 			force.charge(function(d){return (-1)*(calcNodeSize(d.size, "cube") * 500 / r)});
+			body.selectAll(".link")
+            	.style("stroke", "#ccc")
+				.style("stroke-width", function(d){
+					return (calcNodeSize(d.target.size, "cube")/6);
+                });
 			force.start();
 		}
 	})
@@ -101,6 +117,8 @@ var hideButton = buttonPanel.append("button")
 function resetSize(){
 	current = "flatButton";
 	body.selectAll("circle").attr("r", r);
+	body.selectAll(".link").style("stroke-width", 2);
+	body.selectAll("circle + text").attr("font-size", 12);
 	force.linkDistance(l);
 	force.charge(-500);
 	force.start();
