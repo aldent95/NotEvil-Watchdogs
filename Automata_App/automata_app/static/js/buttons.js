@@ -20,7 +20,11 @@ var labelButton = buttonPanel.append("button")
 	.style("width", buttonWidth)
 	.on("click", function(d){
 		if(labelsShown){body.selectAll(".node text").attr("visibility", "hidden");labelsShown = false;}
+
 		var selectedLabel = body.select("circle.node_selected + text");
+		if(selectedLabel[0][0] == null){selectedLabel = body.select("circle.circle_root_selected + text");}
+		if(selectedLabel[0][0] == null){selectedLabel = body.select("circle.circle_end_selected + text");}
+		
 		if(selectedLabel.attr("visibility") == "inline"){selectedLabel.attr("visibility", "hidden")}
 		else{selectedLabel.attr("visibility", "inline")}
 	})
