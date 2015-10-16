@@ -1,10 +1,22 @@
-var buttonHeight = 50;
+/**
+ * This file adds the sizing and label buttons and stores the button panel
+ */
+
+var buttonHeight = 50;		//default button height
 var buttonWidth = 100;
-var labelsShown = true;
-var current = "flatButton";
+var labelsShown = true;		//Are the labels currently being shown?
+var current = "flatButton";	//the current type of sizing
 var body = d3.select("body");
 var buttonPanel = body.append("div");
 
+
+/*
+	Note: if labels don't have two lines of text they might not be displayed properly
+*/
+
+/**
+ *	Toggle all labels button
+ */
 var allLabelButton = buttonPanel.append("button")
 	.style("height", buttonHeight)
 	.style("width", buttonWidth)
@@ -15,6 +27,9 @@ var allLabelButton = buttonPanel.append("button")
 
 	allLabelButton.append("div").html("Toggle All <br> Labels");
 
+/**
+ *	Toggle single label button
+ */
 var labelButton = buttonPanel.append("button")
 	.style("height", buttonHeight)
 	.style("width", buttonWidth)
@@ -31,6 +46,9 @@ var labelButton = buttonPanel.append("button")
 
 	labelButton.append("div").html("Toggle 1 <br> Label");
 
+/**
+ *	Button to chenge sizing to constant sizing
+ */
 var flatButton = buttonPanel.append("button")
 	.style("height", buttonHeight)
 	.style("width", buttonWidth)
@@ -40,6 +58,9 @@ var flatButton = buttonPanel.append("button")
 
 	flatButton.append("div").html("Flat <br> Sizing");
 
+/**
+ *	Toggle between sizing based on the square root of the count and a constant size
+ */
 var squareButton = buttonPanel.append("button")
 	.style("height", buttonHeight)
 	.style("width", buttonWidth)
@@ -71,6 +92,9 @@ var squareButton = buttonPanel.append("button")
 
 	squareButton.append("div").html("Square <br> Sizing");
 
+/**
+ *	Toggle between sizing based on the cube root of the count and a constant size
+ */
 var cubeButton = buttonPanel.append("button")
 	.style("height", buttonHeight)
 	.style("width", buttonWidth)
@@ -100,6 +124,9 @@ var cubeButton = buttonPanel.append("button")
 
 	cubeButton.append("div").html("Cubic <br> Sizing");
 
+/**
+ *	Reset all the sizings back to the default constant
+ */
 function resetSize(){
 	current = "flatButton";
 	body.selectAll("circle").attr("r", r);
