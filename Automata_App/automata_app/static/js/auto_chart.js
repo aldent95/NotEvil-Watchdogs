@@ -293,7 +293,12 @@ function addNode(newId, size, name, newX, newY, root, hasChildren){
 }
 
 function addObjNode(objNode){
-	if(objNode.id == null || objNode.size == null || objNode.name == null){console.log("Error on adding: ");console.log(objNode);alert("TRYING TO INVALID NODE OBJECT");}
+	if(objNode.id == null || objNode.size == null || objNode.name == null){
+		console.log("Error on adding: ");
+		console.log(objNode);
+		alert("TRYING TO INVALID NODE OBJECT");
+		return;
+	}
 	nodes.push(objNode);
 	redraw();
 }
@@ -373,9 +378,17 @@ function mouseup(){
  *	TODO: change to use an object iterator instead
  */
 function updateLogOut(data){
-	d3.select(".logOut").html(
-		"Id: " + data.id + "<br> Size: " + data.size + "<br> Name: "+ data.name + "<br> X: " + data.x + "<br> Y: " + data.y 
-	);
+	var toLogOut = "";
+
+	for(var key in data){
+		toLogOut += key + ": "+data[key];
+		tologout += "<br> "
+	}
+
+	d3.select(".logOut").html(toLogOut);
+	//d3.select(".logOut").html(
+	//	"Id: " + data.id + "<br> Size: " + data.size + "<br> Name: "+ data.name + "<br> X: " + data.x + "<br> Y: " + data.y 
+	//);
 }
 
 // Actual program runs here
