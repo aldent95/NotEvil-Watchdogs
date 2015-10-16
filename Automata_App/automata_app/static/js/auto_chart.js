@@ -383,7 +383,9 @@ function updateLogOut(data){
 	if(data.metadata != null){
 		toLogOut += " <br> <--- Metadata --> <br> "
 		for(var key in data.metadata){
-			toLogOut += key + ": "+data[key];
+			console.log(data[key]);
+			//toLogOut += key + ": "+data[key];
+			toLogOut += key + ": " + data[key].count;
 			toLogOut += "<br> "
 		}
 	}	
