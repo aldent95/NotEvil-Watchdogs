@@ -144,7 +144,7 @@ Step by step run through here:
 
 We have assumed that Git, Pip, Python dev, and libpq-dev is already installed as the a standard requirment.
 
-	+ Clone Repository
+Clone Repository
 ```
 git clone NotEvil-Watchdogs
 ```
