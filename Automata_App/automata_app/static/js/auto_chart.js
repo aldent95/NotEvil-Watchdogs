@@ -292,6 +292,17 @@ function addNode(newId, size, name, newX, newY, root, hasChildren){
 	redraw();
 }
 
+function addObjNode(objNode){
+	if(objNode.id == null || objNode.size == null || objNode.name == null){
+		console.log("Error on adding: ");
+		console.log(objNode);
+		alert("TRYING TO INVALID NODE OBJECT");
+		return;
+	}
+	nodes.push(objNode);
+	redraw();
+}
+
 /**
  *	Adds an edge with the given source and target, or increases length if already exists
  *
@@ -367,9 +378,22 @@ function mouseup(){
  *	TODO: change to use an object iterator instead
  */
 function updateLogOut(data){
-	d3.select(".logOut").html(
-		"Id: " + data.id + "<br> Size: " + data.size + "<br> Name: "+ data.name + "<br> X: " + data.x + "<br> Y: " + data.y 
-	);
+	var toLogOut = "Id: " + data.id + "<br> Size: " + data.size + "<br> Name: "+ data.name + "<br> X: " + data.x + "<br> Y: " + data.y +"<br> ";
+
+	if(data.metadata != null){
+		toLogOut += " <br> <--- Metadata --> <br> "
+		for(var key in data.metadata){
+			console.log(data.metadata);
+			toLogOut += key + ": <br>"
+			toLogOut += "&nbsp;&nbsp; proportion: "+data.metadata[key].percentage + " <br> ";
+			toLogOut += "&nbsp;&nbsp; total: " + data.metadata[key].total + " <br> ";
+		}
+	}	
+
+	d3.select(".logOut").html(toLogOut);
+	//d3.select(".logOut").html(
+	//	"Id: " + data.id + "<br> Size: " + data.size + "<br> Name: "+ data.name + "<br> X: " + data.x + "<br> Y: " + data.y 
+	//);
 }
 
 // Actual program runs here
