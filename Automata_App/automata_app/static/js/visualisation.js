@@ -1,5 +1,4 @@
 	$(document).ready(function(){
-		var activeID = -1;
 		function getCookie(name) {
 			var cookieValue = null;
 			if (document.cookie && document.cookie != '') {
