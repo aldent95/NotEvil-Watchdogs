@@ -41,7 +41,7 @@
 		<h3> {{ project.name}}</h3>
 		<p> {{ project.description}}</p>
 		<p> Project ID: {{project.uuid}}</p>
-		<div><a href = "/projects/{{project.uuid}}/visualisation"> Project ID {{project.uuid}}</a></div>
+		<div><a href = "/projects/{{project.uuid}}/visualisation"> {{project.name}}</a></div>
 		<div><button class="logButton" id="{{project.uuid}}">Add Log</button></div>
 	</div>
 	{%endfor%}
