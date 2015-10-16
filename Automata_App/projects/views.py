@@ -26,9 +26,7 @@ class ProjectList(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
-        # TODO(adriant): once login works
-        # GET ONLY FOR MY USER
-        projects = Project.objects.all()
+        projects = user.project_set.all()
 
         json_data = {"projects": []}
 
@@ -69,7 +67,7 @@ class ProjectDetail(APIView):
 
     def get(self, request, p_uuid):
         try:
-            project = Project.objects.get(uuid=p_uuid)
+            project = user.project_set.get(uuid=p_uuid)
         except Project.DoesNotExist:
             return Response({'errors': ["Not Found"]}, status=404)
         return Response({
@@ -122,7 +120,7 @@ class ProjectTrie(APIView):
     def get(self, request, p_uuid):
 
         try:
-            project = Project.objects.get(uuid=p_uuid)
+            project = user.project_set.get(uuid=p_uuid)
         except Project.DoesNotExist:
             return Response({'errors': ["Not Found"]}, status=404)
 
@@ -167,8 +165,10 @@ class LogList(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request, p_uuid):
-        # TODO(adriant): once login works
-        # GET ONLY FOR MY USER
+        try:
+            project = user.project_set.get(uuid=p_uuid)
+        except Project.DoesNotExist:
+            return Response({'errors': ["Not Found"]}, status=404)
         logs = Log.objects.all().filter(project__uuid=p_uuid)
 
         json_data = {"logs": []}
@@ -188,7 +188,7 @@ class LogList(APIView):
     def post(self, request, p_uuid):
 
         try:
-            project = Project.objects.get(uuid=p_uuid)
+            project = user.project_set.get(uuid=p_uuid)
         except Project.DoesNotExist:
             return Response({'errors': ["Not Found"]}, status=404)
 
