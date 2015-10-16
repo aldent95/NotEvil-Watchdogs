@@ -46,6 +46,7 @@ $(document).ready(function(){
 		});
 		$(document).on("click", "#submit",  function() {
 			user = username;
+			console.log(user);
 			name = document.getElementById("projectname").value;
 			description = document.getElementById("projectdescription").value;
 			data = '{"username":"'+user+'", "name":"'+name+'", "description":"'+description+'"}';
