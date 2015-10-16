@@ -1,4 +1,8 @@
-var frequencyMultiplier = 3;
+/**
+ * This class adds the slider for culling based on mincount
+ */
+
+var frequencyMultiplier = 3;//the scale of the slider, max value will be this * 100
 var axis = d3.svg.axis().orient("top").ticks(1);
 
 var freqSlider = d3.slider().value(minCount/3).on("slide", function(evt, value) {
@@ -14,8 +18,12 @@ var sliderPanel = buttonPanel.append("div").style("height", buttonHeight).style(
 	sliderPanel.append("span").attr("id", "freqText").html("Min Frequency: " + minCount);
 	sliderPanel.append("div").call(freqSlider);
 buttonPanel.append("button").style("height", buttonHeight).style("width", buttonWidth).style("display", "inline").on("click", function(d){getValues()}).html("Update <br> MinFreq");
-function getValues(){
 
+/**
+ * Gets the mincount from the slider, then regenerates the layout based on the new mincount
+ */
+function getValues(){
+	//clear old data
 	svg.selectAll(".link").data([""]).exit().remove();
 	svg.selectAll("circle").data([""]).exit().remove();
 
@@ -25,7 +33,9 @@ function getValues(){
 	while (links.length) { links.pop(); }
 	while (nodes.length) { nodes.pop(); }
     count = 0;
-    redraw();		//vvvvvvvv important!!!!!!!!!!!! Root node breaks without!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    redraw();
+
+    //parse the data with the new minCount		
 	parseRoot(storedTrie);
 	resetSize();
 }
