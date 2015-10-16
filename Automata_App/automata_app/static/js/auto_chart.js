@@ -292,6 +292,12 @@ function addNode(newId, size, name, newX, newY, root, hasChildren){
 	redraw();
 }
 
+function addObjNode(objNode){
+	if(objNode.id == null || objNode.size == null || objNode.name == null){console.log("Error on adding: ");console.log(objNode);alert("TRYING TO INVALID NODE OBJECT");}
+	nodes.push(objNode);
+	redraw();
+}
+
 /**
  *	Adds an edge with the given source and target, or increases length if already exists
  *

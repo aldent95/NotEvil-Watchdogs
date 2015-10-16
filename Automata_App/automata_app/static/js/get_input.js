@@ -20,9 +20,13 @@ function parseData(parentIndex, aNode, nodeSize, root){
 	count ++ ;
 	var current = count - 1;
 
-	if(isArrayEmpty(aNode.links)){addNode(current, calcNodeSize(nodeSize), aNode.event, count, count, root, false);}//Does the node have children? if so add an end node
+	if(isArrayEmpty(aNode.links)){//Does the node have children? if so add an end node
+		addNode(current, calcNodeSize(nodeSize), aNode.event, count, count, root, false);
+		//addObjNode({id:current size:nodeSize, name: aNode.event, x: parseInt(Math.random()*(w-100)+50), y: parseInt(Math.random()*(h-100)+50), root: root, hasChildren: false});
+	}
 	else{
 		addNode(current, calcNodeSize(nodeSize), aNode.event, count, count, root, true);
+		//addObjNode({id:current size:nodeSize, name: aNode.event, x: parseInt(Math.random()*(w-100)+50), y: parseInt(Math.random()*(h-100)+50), root: root, hasChildren: true});
 		jQuery.each(aNode.links, function(index, value){
 			if(value.count >= minCount){
 				parseData(current, value.child, value.count, false);
