@@ -38,11 +38,13 @@
 	<p> Hello {{ username }}, these are your projects: </p>
 
 	{% for project in project_list %}
-	<div>
+	<div id="project">
 		<h3> {{ project.name}}</h3>
 		<p> {{ project.description}}</p>
+		<p> Project ID: {{project.uuid}}</p>
+		<div><a href = "/projects/{{project.uuid}}/visualisation"> Here is your visualisation </a></div>
+	</br>
 		<div><button class="logButton" id="{{project.uuid}}">Add Log</button></div>
-		<div><a href = "/projects/{{project.uuid}}/visualisation"> Project ID {{project.uuid}}</a></div>
 	</div>
 	{%endfor%}
 	<button id="show"> New Project</button>
