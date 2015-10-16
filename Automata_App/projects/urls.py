@@ -18,11 +18,9 @@ from django.contrib import admin
 from projects import views
 
 urlpatterns = [
+    url(r'^login$', views.login_user),
     url(r'^projects$', views.ProjectList.as_view()),
     url(r'^projects/(?P<p_uuid>\w+)$', views.ProjectDetail.as_view()),
     url(r'^projects/(?P<p_uuid>\w+)/trie$', views.ProjectTrie.as_view()),
     url(r'^projects/(?P<p_uuid>\w+)/logs$', views.LogList.as_view()),
-    # url(r'^projects/(?P<p_uuid>\w+)/logs/(?P<l_uuid>\w+)$', views.LogDetail),
-    # url(r'^projects/(?P<p_uuid>\w+)/logs/(?P<l_uuid>\w+)/events$', views.EventList),
-    # url(r'^projects/(?P<p_uuid>\w+)/logs/(?P<l_uuid>\w+)/events/(?P<e_uuid>\w+)$', views.EventDetail),
 ]

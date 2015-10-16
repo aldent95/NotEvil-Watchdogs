@@ -72,6 +72,13 @@ def parseFile(args):
         except KeyError: 
             groupedData[row["Incident_ID"]] = [row,]
 
+
+    # log the user in;
+    resp = requests.post(args.url + 'automata/login', {'username': args.username, 'password': args.password})
+    print resp.status_code
+    cookies = dict(sessionid=resp.cookies['sessionid'],csrftoken=resp.cookies['csrftoken'])
+    print cookies
+
     print "\nNumber of logs:"
     print len(groupedData.keys())
     print
@@ -100,14 +107,8 @@ def parseFile(args):
 
         headers = {"content-type": "application/json"}
 
-        r = requests.post(url, data=json.dumps(data), headers=headers)
+        r = requests.post(url, data=json.dumps(data), headers=headers, cookies=cookies)
         print(r.json())
-
-
-
-
-
- 
 
 
 def run():
@@ -116,7 +117,9 @@ def run():
     a.add_argument("-f", "--file", dest="file", help="Path to event file",
                    required=True)
     a.add_argument("-u", "--url", dest="url", help="server url", required=True)
-    a.add_argument("-p", "--project", dest="p_uuid", required=True)
+    a.add_argument("-p", "--project", dest="p_uuid", required=True)    
+    a.add_argument("-us", "--username", dest="username", required=True)
+    a.add_argument("-pw", "--password", dest="password", required=True)
 
     args = a.parse_args()
 
@@ -128,4 +131,3 @@ def run():
 
 if __name__ == "__main__":
     run()
-
