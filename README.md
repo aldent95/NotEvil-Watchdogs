@@ -18,10 +18,10 @@ We used the Django Framework and the Django Rest Framework for this project as i
 
 The “program” takes data in a Json file format.
 
-	Format Required for JSON Data
+Format Required for JSON Data
 
-'''
 
+```
 {
    "uuid":1,
    "events":[
@@ -43,11 +43,11 @@ The “program” takes data in a Json file format.
    ],
    "metadata":{   }
 }
-'''
+```
 
 ---------------------------------------------------------------------
 
-'''
+```
 {
 "uuid":number, 
 "events":[
@@ -63,7 +63,7 @@ The “program” takes data in a Json file format.
 }
 
 uuid is Universal Unique Identifier
-'''
+```
 
 
 As long as you fit this Json format with a simple parser the “program” can take that data.
@@ -144,21 +144,21 @@ Step by step run through here:
 We have assumed that Git, Pip, Python dev, and libpq-dev is already installed as the a standard requirment.
 
 	+ Clone Repository
-'''
+```
 git clone NotEvil-Watchdogs
-'''
+```
 
 In the Automata_App folder do the following commands
 
-'''
+```
 sudo pip install -r requirements.txt
 
-python mnaage.py makemigrations (This command should be already completed on delivery)
+python manage.py makemigrations (This command should be already completed on delivery)
 
 
 python manage.py runserver 0.0.0.0:80
 
-'''
+```
 
 Then when the server is running on either local machine or on a virtual machine need to make user or logon to existing account.
 
