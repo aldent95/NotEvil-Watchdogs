@@ -378,12 +378,15 @@ function mouseup(){
  *	TODO: change to use an object iterator instead
  */
 function updateLogOut(data){
-	var toLogOut = "";
+	var toLogOut = "Id: " + data.id + "<br> Size: " + data.size + "<br> Name: "+ data.name + "<br> X: " + data.x + "<br> Y: " + data.y +"<br> ";
 
-	for(var key in data){
-		toLogOut += key + ": "+data[key];
-		toLogOut += "<br> "
-	}
+	if(data.metadata != null){
+		toLogOut += " <br> <--- Metadata --> <br> "
+		for(var key in data.metadata){
+			toLogOut += key + ": "+data[key];
+			toLogOut += "<br> "
+		}
+	}	
 
 	d3.select(".logOut").html(toLogOut);
 	//d3.select(".logOut").html(
