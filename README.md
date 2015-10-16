@@ -147,21 +147,26 @@ Step by step run through here:
 
 We have assumed that Git, Pip, Python dev, and libpq-dev is already installed as the a standard requirment.
 
-Clone Repository
 ```
-git clone NotEvil-Watchdogs
+sudo apt-get install python-pip
+sudo apt-get install git
+sudo apt-get install python-dev
+sudo apt-get install libpq-dev
+
 ```
+
+Clone this Repository
+
 
 In the Automata_App folder do the following commands
 
 ```
-sudo pip install -r requirements.txt
+sudo python pip install -r requirements.txt
 
 python manage.py makemigrations (This command should be already completed on delivery)
 
 
 python manage.py runserver 0.0.0.0:80
-
 ```
 
 Then when the server is running on either local machine or on a virtual machine need to make user or logon to existing account.
