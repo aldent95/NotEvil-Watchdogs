@@ -16,10 +16,11 @@ We used the Django Framework and the Django Rest Framework for this project as i
 
 ### 2.	Format style
 
-The “program” takes data in a Json file format.
+The “program” takes data in a Json file format. 
+
+There is a pop up dialoue in which you can also add in json file format text to add logs to your data set.
 
 Format Required for JSON Data
-
 
 
 ```
@@ -67,9 +68,10 @@ uuid is Universal Unique Identifier
 ```
 
 
-As long as you fit this Json format with a simple parser the “program” can take that data.
-This “Program” contains a basic csv parser that is tuned to A Rabobank Data set which is also included and can be used as an example of what is required.
+As long as you fit this Json format with a simple parser or in Json format in the pop up dialogue box, the “program” can take that data.
 
+
+This “Program” contains a basic csv parser that is tuned to A Rabobank Data set which is also included and can be used as an example of what is required.
 
 
 ### 3. Web Application
@@ -92,7 +94,7 @@ Lost password link to Django admin page, enter email address for password reset.
 
 The Projects page initially only has two buttons which are New project Button and logout link.
 
-After you have made a new project you can then Add a log to the project or go to the project's visulaisation page and well as the previous options.
+After you have made a new project you can then Add a log to the project or go to the project's visulaisation page with the same add log options.
 
 #### Visualisation Page
 
@@ -131,6 +133,7 @@ There is also moving functionality to move the diagram within the drawing panel 
 The frontend is comprised mostly of D3 Javascript, Javascript and base indexs plus styling elements of HTML and CSS.
 
 The following link is the D3 Docs:
+
 [D3 Documentation](https://github.com/mbostock/d3/wiki)
 
 The visualization is using a forced layout from D3 library
@@ -171,5 +174,5 @@ Then when the server is running on either local machine or on a virtual machine 
 
 * Dragging and zooming on nodes works differently on different operating systems
 
-*
+
 
