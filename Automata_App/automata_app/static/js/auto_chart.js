@@ -154,6 +154,9 @@ function redraw(){
   			else if(d.hasChildren){d3.select(this).attr("class", "node_selected");}
   			else {d3.select(this).attr("class", "circle_end_selected");}
   			selectedNode = d;
+			d3.selectAll(".link").style("stroke", "#ccc");
+			getAllChildren(d.id);
+			getAllParents(d.id);
   			updateLogOut(d);
     	})
 		.on("mouseleave", function(d){
