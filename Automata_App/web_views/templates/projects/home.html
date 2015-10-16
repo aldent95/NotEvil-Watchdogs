@@ -3,7 +3,7 @@
 {% block title %} Projects {% endblock %}
 
 {% block content %}
-	
+	<!-- Pop up dialog for adding a new project -->
 	<dialog id="window">
 		<h3>New Project</h3>
 		<p>Name</p>
@@ -15,6 +15,7 @@
 			<button id="close">Close</button>
 		</div>
 	</dialog>
+	<!-- Pop up dialog for adding new logs to a project -->
 	<dialog id="json">
 		<div><h3>Enter log data</h3></div>
 		<div class="submisssionfield "><textarea class='submisssionfield' name="entry" id="jsonEntry"></textarea></div>
@@ -24,6 +25,7 @@
 			<button id="jsonClose">Close</button>
 		</div>
 	</dialog>
+	<!-- Pop up help dialog for the format needed for the logs -->
 	<dialog id="help">
 	<div><h3>Format Required for JSON Data</h3></div>
 	<p>{"uuid":number,   (only needed if you want each log to have a unique ID)</p>
@@ -34,10 +36,11 @@
 	<p>}</p>
 	<button id="helpClose">Close</button>
 	</dialog>
+	<!-- Main display -->
 	<h2>Projects</h2>
 	<p> Hello {{ username }}, these are your projects: </p>
 
-	{% for project in project_list %}
+	{% for project in project_list %}<!-- Creates a div for each project the user has -->
 	<div>
 		<h3> {{ project.name}}</h3>
 		<p> {{ project.description}}</p>
@@ -45,11 +48,13 @@
 		<div><a href = "/projects/{{project.uuid}}/visualisation"> Project ID {{project.uuid}}</a></div>
 	</div>
 	{%endfor%}
+	<!-- Buttons! -->
 	<button id="show"> New Project</button>
 	<a href ="/logout"> Logout </a>
-	<script>
+	<script><!-- Sets up a variable needed by home.js -->
 	var username = "{{username}}";
 	</script>
+	<!-- Import all the javascript needed for the page -->
 	{% load staticfiles %}
 	<script src="{% static 'js/home.js' %}"></script>
 {% endblock %}
