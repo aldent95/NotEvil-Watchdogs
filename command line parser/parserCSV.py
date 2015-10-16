@@ -74,7 +74,7 @@ def parseFile(args):
 
 
     # log the user in;
-    resp = requests.post(args.url + 'automata/login', {'username': args.username, 'password': args.pasword})
+    resp = requests.post(args.url + 'automata/login', {'username': args.username, 'password': args.password})
     print resp.status_code
     cookies = dict(sessionid=resp.cookies['sessionid'])
 
