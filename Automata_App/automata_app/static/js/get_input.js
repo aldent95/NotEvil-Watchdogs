@@ -23,19 +23,19 @@ function parseData(parentIndex, aNode, nodeSize, root){
 	if(isArrayEmpty(aNode.links)){//Does the node have children? if so add an end node
 		//addNode(current, calcNodeSize(nodeSize), aNode.event, count, count, root, false);
 		if(test){
-			addObjNode({id:current, size:nodeSize, name: aNode.event, x: parseInt(Math.random()*(w-100)+50), y: parseInt(Math.random()*(h-100)+50), root: root, hasChildren: false});
+			addObjNode({id:current, size:nodeSize, name: aNode.event, x: parseInt(Math.random()*(w-100)+50), y: parseInt(Math.random()*(h-100)+50), root: root, hasChildren: false, metadata: null});
 		}
 		else{
-			addObjNode({id:current, size:nodeSize, name: aNode.event, x: parseInt(Math.random()*(w-100)+50), y: parseInt(Math.random()*(h-100)+50), root: root, hasChildren: false});
+			addObjNode({id:current, size:nodeSize, name: aNode.event, x: parseInt(Math.random()*(w-100)+50), y: parseInt(Math.random()*(h-100)+50), root: root, hasChildren: false, metadata: aNode.metadata});
 		}
 	}
 	else{
 		//addNode(current, calcNodeSize(nodeSize), aNode.event, count, count, root, true);
 		if(test){
-			addObjNode({id:current, size:nodeSize, name: aNode.event, x: parseInt(Math.random()*(w-100)+50), y: parseInt(Math.random()*(h-100)+50), root: root, hasChildren: true});
+			addObjNode({id:current, size:nodeSize, name: aNode.event, x: parseInt(Math.random()*(w-100)+50), y: parseInt(Math.random()*(h-100)+50), root: root, hasChildren: true, metadata: null});
 		}
 		else{
-			addObjNode({id:current, size:nodeSize, name: aNode.event, x: parseInt(Math.random()*(w-100)+50), y: parseInt(Math.random()*(h-100)+50), root: root, hasChildren: true});
+			addObjNode({id:current, size:nodeSize, name: aNode.event, x: parseInt(Math.random()*(w-100)+50), y: parseInt(Math.random()*(h-100)+50), root: root, hasChildren: true, metadata: aNode.metadata});
 		}
 		jQuery.each(aNode.links, function(index, value){
 			if(value.count >= minCount){

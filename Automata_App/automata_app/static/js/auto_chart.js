@@ -382,7 +382,7 @@ function updateLogOut(data){
 
 	for(var key in data){
 		toLogOut += key + ": "+data[key];
-		tologout += "<br> "
+		toLogOut += "<br> "
 	}
 
 	d3.select(".logOut").html(toLogOut);
