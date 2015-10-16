@@ -174,5 +174,6 @@ Then when the server is running on either local machine or on a virtual machine 
 
 * Dragging and zooming on nodes works differently on different operating systems
 
+* No current support for Firefox or Internet Explorer
 
 
