@@ -6,9 +6,21 @@ from collections import OrderedDict, Iterable
 from projects.models import Project, Log, Event
 from projects.serializers import ProjectSerializer, LogSerializer, EventSerializer
 import hashlib
+from django.contrib.auth import authenticate, login
+from django.views.decorators.csrf import csrf_exempt
+
+
+@csrf_exempt
+def login_user(request):
+    user = authenticate(username=request.POST['username'],  password=request.POST['password'])
+    login(request, user)
+    return HttpResponse("Logged In")
 
 
 class ProjectList(APIView):
+
+    authentication_classes = (SessionAuthentication, BasicAuthentication)
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request):
         # TODO(adriant): once login works
@@ -48,6 +60,9 @@ class ProjectList(APIView):
 
 
 class ProjectDetail(APIView):
+
+    authentication_classes = (SessionAuthentication, BasicAuthentication)
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request, p_uuid):
         try:
@@ -98,6 +113,9 @@ def merge_metadata(md, event):
 
 class ProjectTrie(APIView):
 
+    authentication_classes = (SessionAuthentication, BasicAuthentication)
+    permission_classes = (IsAuthenticated,)
+
     def get(self, request, p_uuid):
 
         try:
@@ -141,6 +159,9 @@ class ProjectTrie(APIView):
 
 
 class LogList(APIView):
+
+    authentication_classes = (SessionAuthentication, BasicAuthentication)
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request, p_uuid):
         # TODO(adriant): once login works
