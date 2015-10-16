@@ -20,7 +20,7 @@ def index(request):
 @requires_csrf_token
 def visualisation(request, p_uuid):
     try:
-        project = user.project_set.get(uuid=p_uuid)
+        project = request.user.project_set.get(uuid=p_uuid)
     except Project.DoesNotExist:
         return render(request, '404.html', {'errorMessage':'The project with the id '+p_uuid+' does not exist'})
     context = {
