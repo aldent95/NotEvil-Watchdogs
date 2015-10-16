@@ -45,7 +45,7 @@ $(document).ready(function(){
 			document.getElementById("json").show();
 		});
 		$(document).on("click", "#submit",  function() {
-			user = "{{username}}";
+			user = username;
 			name = document.getElementById("projectname").value;
 			description = document.getElementById("projectdescription").value;
 			data = '{"username":"'+user+'", "name":"'+name+'", "description":"'+description+'"}';

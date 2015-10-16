@@ -47,7 +47,9 @@
 	{%endfor%}
 	<button id="show"> New Project</button>
 	<a href ="/logout"> Logout </a>
-
+	<script>
+	var username = {{username}};
+	</script>
 	{% load staticfiles %}
 	<script src="{% static 'js/home.js' %}"></script>
 {% endblock %}
