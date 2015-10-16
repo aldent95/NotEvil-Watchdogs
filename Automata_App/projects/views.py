@@ -11,7 +11,11 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 from django.http import HttpResponse
+from rest_framework.authentication import SessionAuthentication as OriginalSessionAuthentication
 
+class SessionAuthentication(OriginalSessionAuthentication):
+    def enforce_csrf(self, request):
+        return
 
 @csrf_exempt
 def login_user(request):
