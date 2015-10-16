@@ -195,6 +195,8 @@ function getAllChildren(childId){
 }
 
 function getChildren(childId){
+	var toSelect = d3.selectAll(".link").filter(function(d){return d.source.id == childId});
+	toSelect.style("stroke", "red");
 	for(var i = 0; i < links.length; i++){
 		var edge = links[i];
 		if(edge.source.id == childId){
@@ -218,10 +220,12 @@ function getAllParents(childId){
 }
 
 function getParents(childId){
+	var toSelect = d3.selectAll(".link").filter(function(d){return d.target.id == childId});
+        toSelect.style("stroke", "red");
+
 	for(var i = 0; i < links.length; i++){
 		var edge = links[i];
 		if(edge.target.id == childId){
-		//	var d3seledge = d3.select(edge).style("stroke", "red");
 			parentNodes.push(edge.source);
 			parentLinks.push(edge);
 			getParents(edge.source.id);
