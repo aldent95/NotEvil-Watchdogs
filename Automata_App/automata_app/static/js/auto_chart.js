@@ -154,6 +154,9 @@ function redraw(){
   			else if(d.hasChildren){d3.select(this).attr("class", "node_selected");}
   			else {d3.select(this).attr("class", "circle_end_selected");}
   			selectedNode = d;
+			d3.selectAll(".link").style("stroke", "#ccc");
+			getAllChildren(d.id);
+			getAllParents(d.id);
   			updateLogOut(d);
     	})
 		.on("mouseleave", function(d){
@@ -182,16 +185,55 @@ function redraw(){
     force.start();
 }
 
-var children = [];
+var childNodes = [];
+var childLinks = [];
 
-function getAllChildren(parentId){
-	for(edge in links){
-		if(edge.source == parentId){
-			children.push(edge.target);
-			getAllChildren(edge.target);
+function getAllChildren(childId){
+	childNodes = [];
+	childLinks = [];
+
+	getChildren(childId);
+
+	return {nodes: childNodes, links: childLinks};
+}
+
+function getChildren(childId){
+	var toSelect = d3.selectAll(".link").filter(function(d){return d.source.id == childId});
+	toSelect.style("stroke", "red");
+	for(var i = 0; i < links.length; i++){
+		var edge = links[i];
+		if(edge.source.id == childId){
+			childNodes.push(edge.target);
+			childLinks.push(edge);
+			getChildren(edge.target.id);
 		}
 	}
-	return children;
+}
+
+var parentNodes = [];
+var parentLinks = [];
+
+function getAllParents(childId){
+	parentNodes = [];
+	parentLinks = [];
+
+	getParents(childId);
+
+	return {nodes: parentNodes, links: parentLinks};
+}
+
+function getParents(childId){
+	var toSelect = d3.selectAll(".link").filter(function(d){return d.target.id == childId});
+        toSelect.style("stroke", "red");
+
+	for(var i = 0; i < links.length; i++){
+		var edge = links[i];
+		if(edge.target.id == childId){
+			parentNodes.push(edge.source);
+			parentLinks.push(edge);
+			getParents(edge.source.id);
+		}
+	}
 }
 
 /*

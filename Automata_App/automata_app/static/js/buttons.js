@@ -100,24 +100,6 @@ var cubeButton = buttonPanel.append("button")
 
 	cubeButton.append("div").html("Cubic <br> Sizing");
 
-var hideButton = buttonPanel.append("button")
-	.style("height", buttonHeight)
-	.style("width", buttonWidth)
-	.attr("class", "logButton")
-	.on("click", function(d){
-		console.log(selectedNode.id);
-		children = [];
-		var allChildren = getAllChildren(selectedNode.id);
-		var consolelog = "";
-		for(child in allChildren){
-			consolelog = consolelog + ", " +child;
-		}
-		console.log(consolelog);
-	})
-	
-	hideButton.append("div").html("Hide <br> Children");
-
-
 function resetSize(){
 	current = "flatButton";
 	body.selectAll("circle").attr("r", r);
