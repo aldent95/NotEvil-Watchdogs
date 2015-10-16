@@ -8,12 +8,12 @@ Login
 <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
 {% endblock %}
 {% block content %}
-
+<!-- Main page content-->
 <div id="loginDiv">
-{% if form.errors %}
+{% if form.errors %}<!-- Displays if there were errors filling in the form -->
 <p>Your username and password didn't match. Please try again.</p>
 {% endif %}
-
+<!-- If the user is redirected from a different page, this is displayed -->
 {% if next %}
     {% if user.is_authenticated %}
     <p>Your account doesn't have access to this page. To proceed,
@@ -22,7 +22,7 @@ Login
     <p>Please login to see this page.</p>
     {% endif %}
 {% endif %}
-
+<!-- Login form -->
 <p> Please enter your credentials </p>
 
 <form method="post" action="{% url 'login' %}">
@@ -39,13 +39,11 @@ Login
 </table>
 
 
-
+<!-- Buttons! -->
 	<input type="submit" value="Login" />
 	<a href="/signup"><input type="button" value="Sign up" style="margin-top:20;margin-left:84"></a>
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
-
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
 
 </div>
 
