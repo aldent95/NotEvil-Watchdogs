@@ -384,8 +384,8 @@ function updateLogOut(data){
 		toLogOut += " <br> <--- Metadata --> <br> "
 		for(var key in data.metadata){
 			console.log(data.metadata);
-			toLogOut += key + ": "+data[key];
-			//toLogOut += key + ": " + data[key].total;
+			toLogOut += key + ": "+data.metadata[key];
+			toLogOut += key + ": " + data.metadata[key].total;
 			toLogOut += "<br> "
 		}
 	}	
