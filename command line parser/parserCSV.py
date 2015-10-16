@@ -76,7 +76,8 @@ def parseFile(args):
     # log the user in;
     resp = requests.post(args.url + 'automata/login', {'username': args.username, 'password': args.password})
     print resp.status_code
-    cookies = dict(sessionid=resp.cookies['sessionid'])
+    cookies = dict(sessionid=resp.cookies['sessionid'],csrftoken=resp.cookies['csrftoken'])
+    print cookies
 
     print "\nNumber of logs:"
     print len(groupedData.keys())

@@ -25,7 +25,6 @@ class ProjectList(APIView):
     authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = (IsAuthenticated,)
 
-    @csrf_exempt
     def get(self, request):
         # TODO(adriant): once login works
         # GET ONLY FOR MY USER
@@ -45,7 +44,6 @@ class ProjectList(APIView):
 
         return Response(json_data)
 
-    @csrf_exempt
     def post(self, request):
         serializer = ProjectSerializer(data=request.data)
            
@@ -69,7 +67,6 @@ class ProjectDetail(APIView):
     authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = (IsAuthenticated,)
 
-    @csrf_exempt
     def get(self, request, p_uuid):
         try:
             project = Project.objects.get(uuid=p_uuid)
@@ -122,7 +119,6 @@ class ProjectTrie(APIView):
     authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = (IsAuthenticated,)
 
-    @csrf_exempt
     def get(self, request, p_uuid):
 
         try:
@@ -170,7 +166,6 @@ class LogList(APIView):
     authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = (IsAuthenticated,)
 
-    @csrf_exempt
     def get(self, request, p_uuid):
         # TODO(adriant): once login works
         # GET ONLY FOR MY USER
@@ -190,7 +185,6 @@ class LogList(APIView):
 
         return Response(json_data)
 
-    @csrf_exempt
     def post(self, request, p_uuid):
 
         try:
