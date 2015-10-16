@@ -70,7 +70,6 @@
 			document.getElementById("json").show();
 		});
 		$(document).on("click", "#jsonClose", function() {
-			activeID = -1;
 			document.getElementById("json").close();  
 		});
 		$(document).on("click", "#helpClose", function() {  
