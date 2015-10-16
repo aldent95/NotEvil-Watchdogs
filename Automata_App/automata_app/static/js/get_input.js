@@ -16,7 +16,7 @@ var inputLinks = [];
  *	@param nodeSize The count of the node
  *	@param boolean, Is it a root node?
  */
-function parseData(parentIndex, aNode, nodeSize, root){
+function parseData(parentIndex, aNode, nodeSize, root, metdata){
 	count ++ ;
 	var current = count - 1;
 
@@ -26,7 +26,7 @@ function parseData(parentIndex, aNode, nodeSize, root){
 			addObjNode({id:current, size:nodeSize, name: aNode.event, x: parseInt(Math.random()*(w-100)+50), y: parseInt(Math.random()*(h-100)+50), root: root, hasChildren: false, metadata: null});
 		}
 		else{
-			addObjNode({id:current, size:nodeSize, name: aNode.event, x: parseInt(Math.random()*(w-100)+50), y: parseInt(Math.random()*(h-100)+50), root: root, hasChildren: false, metadata: aNode.metadata});
+			addObjNode({id:current, size:nodeSize, name: aNode.event, x: parseInt(Math.random()*(w-100)+50), y: parseInt(Math.random()*(h-100)+50), root: root, hasChildren: false, metadata: metdata});
 		}
 	}
 	else{
@@ -35,11 +35,11 @@ function parseData(parentIndex, aNode, nodeSize, root){
 			addObjNode({id:current, size:nodeSize, name: aNode.event, x: parseInt(Math.random()*(w-100)+50), y: parseInt(Math.random()*(h-100)+50), root: root, hasChildren: true, metadata: null});
 		}
 		else{
-			addObjNode({id:current, size:nodeSize, name: aNode.event, x: parseInt(Math.random()*(w-100)+50), y: parseInt(Math.random()*(h-100)+50), root: root, hasChildren: true, metadata: aNode.metadata});
+			addObjNode({id:current, size:nodeSize, name: aNode.event, x: parseInt(Math.random()*(w-100)+50), y: parseInt(Math.random()*(h-100)+50), root: root, hasChildren: true, metadata: metdata});
 		}
 		jQuery.each(aNode.links, function(index, value){
 			if(value.count >= minCount){
-				parseData(current, value.child, value.count, false);
+				parseData(current, value.child, value.count, false, value.metadata);
 			}
 		})
 	}
@@ -78,7 +78,7 @@ function parseRoot(aNode){
 	}
 	jQuery.each(aNode.links, function(index, value){
 		if(value.count >= minCount){
-			parseData(null, value.child, value.count, true);
+			parseData(null, value.child, value.count, true, value.metadata);
 		}
 	});
 }
